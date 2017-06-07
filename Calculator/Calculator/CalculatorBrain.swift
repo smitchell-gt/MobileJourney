@@ -51,16 +51,32 @@ struct CalculatorBrain {
             switch operation {
             case .constant(let value):
                 accumulator = value
-                description = buildStringFromDouble(value)
+                
+                if description.isEmpty {
+                    description = buildStringFromDouble(value)
+                } else {
+                    description += buildStringFromDouble(value)
+                }
             case .unaryOperation(let function):
                 if accumulator != nil {
                     accumulator = function(accumulator!)
-                    description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                    
+                    if description.isEmpty {
+                        description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                    } else {
+                        description = symbol + "(" + description + ")"
+                    }
                 }
             case .binaryOperation(let function):
                 if accumulator != nil {
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
-                    description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+                    
+                    if description.isEmpty {
+                        description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+                    } else {
+                        description += symbol
+                    }
+                    
                     accumulator = nil
                 }
                 break
