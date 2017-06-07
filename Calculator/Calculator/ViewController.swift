@@ -20,15 +20,7 @@ class ViewController: UIViewController {
             return Double(display.text!)!
         }
         set {
-            display.text = buildStringFromDouble(newValue)
-        }
-    }
-    
-    func buildStringFromDouble(_ value: Double) -> String {
-        if value.truncatingRemainder(dividingBy: 1) == 0 {
-            return String(Int(value))
-        } else {
-            return String(value)
+            display.text = calculatorBrain.buildStringFromDouble(newValue)
         }
     }
     

@@ -12,6 +12,7 @@ struct CalculatorBrain {
     
     private var accumulator: Double?
     private var pendingBinaryOperation: PendingBinaryOperation?
+    private var description: String = ""
     
     private enum Operation {
         case constant(Double)
@@ -50,13 +51,16 @@ struct CalculatorBrain {
             switch operation {
             case .constant(let value):
                 accumulator = value
+                description = buildStringFromDouble(value)
             case .unaryOperation(let function):
                 if accumulator != nil {
                     accumulator = function(accumulator!)
+                    description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
                 }
             case .binaryOperation(let function):
                 if accumulator != nil {
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    description = buildStringFromDouble(accumulator!) + " " + symbol + " "
                     accumulator = nil
                 }
                 break
@@ -74,6 +78,14 @@ struct CalculatorBrain {
         if accumulator != nil {
             accumulator = pendingBinaryOperation?.perform(with: accumulator!)
             pendingBinaryOperation = nil
+        }
+    }
+    
+    func buildStringFromDouble(_ value: Double) -> String {
+        if value.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(Int(value))
+        } else {
+            return String(value)
         }
     }
     
