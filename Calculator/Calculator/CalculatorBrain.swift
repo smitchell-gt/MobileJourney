@@ -77,6 +77,15 @@ struct CalculatorBrain {
         }
     }
     
+    var resultIsPending: Bool {
+        get {
+            return pendingBinaryOperation != nil
+        }
+        set {
+            resultIsPending = newValue
+        }
+    }
+    
     var result: Double? {
         get {
             return accumulator
