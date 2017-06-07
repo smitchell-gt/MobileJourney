@@ -43,6 +43,15 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func addDecimal(_ sender: UIButton) {
+        let textCurrentlyInDisplay = display.text!
+        
+        if !textCurrentlyInDisplay.contains(".") {
+            display.text = textCurrentlyInDisplay + "."
+            userIsInTheMiddleOfTyping = true
+        }
+    }
+    
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             calculatorBrain.setOperand(displayValue)
