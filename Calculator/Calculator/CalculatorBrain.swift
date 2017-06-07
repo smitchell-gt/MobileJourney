@@ -73,6 +73,7 @@ struct CalculatorBrain {
     mutating func performPendingBinaryOperation() {
         if accumulator != nil {
             accumulator = pendingBinaryOperation?.perform(with: accumulator!)
+            pendingBinaryOperation = nil
         }
     }
     
