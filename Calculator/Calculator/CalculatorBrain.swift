@@ -11,6 +11,7 @@ import Foundation
 struct CalculatorBrain {
     
     private var accumulator: Double?
+    private var variable: String?
     private var pendingBinaryOperation: PendingBinaryOperation?
     private var description: String = ""
     
@@ -83,7 +84,7 @@ struct CalculatorBrain {
                 description += " " + buildStringFromDouble(accumulator!)
                 performPendingBinaryOperation()
             case .clear:
-                accumulator = 0
+                accumulator = nil
                 description = ""
                 pendingBinaryOperation = nil
             }
@@ -92,6 +93,10 @@ struct CalculatorBrain {
     
     mutating func setOperand(_ operand: Double) {
         accumulator = operand
+    }
+    
+    func setOperand(variable named: String) {
+        variable = named
     }
     
     mutating func performPendingBinaryOperation() {
