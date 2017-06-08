@@ -95,7 +95,7 @@ struct CalculatorBrain {
         accumulator = operand
     }
     
-    func setOperand(variable named: String) {
+    mutating func setOperand(variable named: String) {
         variable = named
     }
     
