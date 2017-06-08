@@ -74,13 +74,14 @@ struct CalculatorBrain {
                     if description.isEmpty {
                         description = buildStringFromDouble(accumulator!) + " " + symbol + " "
                     } else {
-                        description += symbol
+                        description += " " + symbol
                     }
                     
                     accumulator = nil
                 }
                 break
             case .equals:
+                description += " " + buildStringFromDouble(accumulator!)
                 performPendingBinaryOperation()
             }
         }
@@ -95,6 +96,10 @@ struct CalculatorBrain {
             accumulator = pendingBinaryOperation?.perform(with: accumulator!)
             pendingBinaryOperation = nil
         }
+    }
+    
+    func getOperationHistory() {
+        
     }
     
     func buildStringFromDouble(_ value: Double) -> String {
