@@ -349,6 +349,7 @@
                     </view>
                     <connections>
                         <outlet property="display" destination="wsE-XJ-Kl0" id="DVe-Xb-4Sf"/>
+                        <outlet property="historyDisplay" destination="jro-6w-LSp" id="BHr-4W-axR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

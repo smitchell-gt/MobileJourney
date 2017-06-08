@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var historyDisplay: UILabel!
     
     var userIsInTheMiddleOfTyping = false
     private var calculatorBrain: CalculatorBrain = CalculatorBrain()
@@ -57,5 +58,11 @@ class ViewController: UIViewController {
         if let result = calculatorBrain.result {
             displayValue = result
         }
+        
+        displayHistory()
+    }
+    
+    func displayHistory() {
+        historyDisplay.text = calculatorBrain.getOperationHistory()
     }
 }

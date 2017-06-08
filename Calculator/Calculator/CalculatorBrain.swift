@@ -19,10 +19,10 @@ struct CalculatorBrain {
         case unaryOperation((Double) -> Double)
         case binaryOperation((Double, Double) -> Double)
         case equals
+        case clear
     }
     
     private var operations: Dictionary<String,Operation> = [
-        "C": Operation.constant(0),
         "π": Operation.constant(Double.pi),
         "e": Operation.constant(M_E),
         "√": Operation.unaryOperation(sqrt),
@@ -34,7 +34,8 @@ struct CalculatorBrain {
         "÷": Operation.binaryOperation({ $0 / $1 }),
         "+": Operation.binaryOperation({ $0 + $1 }),
         "-": Operation.binaryOperation({ $0 - $1 }),
-        "=": Operation.equals
+        "=": Operation.equals,
+        "C": Operation.clear
     ]
     
     private struct PendingBinaryOperation {
@@ -52,10 +53,8 @@ struct CalculatorBrain {
             case .constant(let value):
                 accumulator = value
                 
-                if description.isEmpty {
-                    description = buildStringFromDouble(value)
-                } else {
-                    description += buildStringFromDouble(value)
+                if !resultIsPending {
+                    description = buildStringFromDouble(accumulator!)
                 }
             case .unaryOperation(let function):
                 if accumulator != nil {
@@ -83,6 +82,10 @@ struct CalculatorBrain {
             case .equals:
                 description += " " + buildStringFromDouble(accumulator!)
                 performPendingBinaryOperation()
+            case .clear:
+                accumulator = 0
+                description = ""
+                pendingBinaryOperation = nil
             }
         }
     }
@@ -98,8 +101,14 @@ struct CalculatorBrain {
         }
     }
     
-    func getOperationHistory() {
+    func getOperationHistory() -> String {
+        if description.isEmpty { return "" }
         
+        if resultIsPending {
+            return description + " ..."
+        } else {
+            return description + " ="
+        }
     }
     
     func buildStringFromDouble(_ value: Double) -> String {
@@ -113,9 +122,6 @@ struct CalculatorBrain {
     var resultIsPending: Bool {
         get {
             return pendingBinaryOperation != nil
-        }
-        set {
-            resultIsPending = newValue
         }
     }
     
