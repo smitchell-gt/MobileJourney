@@ -9,9 +9,10 @@
 import UIKit
 
 class FaceView: UIView {
-
+    
     var scale: CGFloat = 0.9
     var eyesOpen: Bool = false
+    var mouthCurvature: Double = 1.0 // 1.0: full smile, -1.0: full frown
     
     private var skullRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 2 * scale
@@ -31,10 +32,17 @@ class FaceView: UIView {
         pathForSkull().stroke()
         pathForEye(.left).stroke()
         pathForEye(.right).stroke()
+        pathForMouth().stroke()
     }
-
+    
     private func pathForSkull() -> UIBezierPath {
-        let path = UIBezierPath(arcCenter: skullCenter, radius: skullRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        let path = UIBezierPath(
+            arcCenter: skullCenter,
+            radius: skullRadius,
+            startAngle: 0,
+            endAngle: 2 * CGFloat.pi,
+            clockwise: false
+        )
         path.lineWidth = 5.0
         return path
     }
@@ -53,13 +61,36 @@ class FaceView: UIView {
         
         let path: UIBezierPath
         if (eyesOpen) {
-            path = UIBezierPath(arcCenter: eyeCenter, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+            path = UIBezierPath(
+                arcCenter: eyeCenter,
+                radius: eyeRadius,
+                startAngle: 0,
+                endAngle: 2 * CGFloat.pi,
+                clockwise: true
+            )
         } else {
             path = UIBezierPath()
             path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
             path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
         }
         path.lineWidth = 5.0
+        
+        return path
+    }
+    
+    private func pathForMouth() -> UIBezierPath {
+        let mouthWidth = skullRadius / Ratios.skullRadiusToMouthWidth
+        let mouthHeight = skullRadius / Ratios.skullRadiusToMouthHeight
+        let mouthOffset = skullRadius / Ratios.skullRadiusToMouthOffset
+        
+        let mouthRect = CGRect(
+            x: skullCenter.x - mouthWidth,
+            y: skullCenter.y + mouthOffset,
+            width: mouthWidth,
+            height: mouthHeight
+        )
+        
+        let path = UIBezierPath(rect: mouthRect)
         
         return path
     }
