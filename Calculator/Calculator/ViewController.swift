@@ -40,8 +40,12 @@ class ViewController: UIViewController {
         let textCurrentlyInDisplay = display.text!
         
         if !textCurrentlyInDisplay.contains(".") {
-            display.text = textCurrentlyInDisplay + "."
-            userIsInTheMiddleOfTyping = true
+            if !userIsInTheMiddleOfTyping {
+                display.text = "0."
+                userIsInTheMiddleOfTyping = true
+            } else {
+                display.text = textCurrentlyInDisplay + "."
+            }
         }
     }
     
