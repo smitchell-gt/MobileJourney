@@ -120,10 +120,7 @@ struct CalculatorBrain {
         }
         
         var result: (result: Double?, isPending: Bool, description: String) = (nil, false, "")
-        var callStack: [Action] = []
         for action in history {
-            callStack.append(action)
-            
             if let operation = operations[action.get()] {
                 result = performOperation(operation)
             }
