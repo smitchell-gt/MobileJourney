@@ -84,7 +84,7 @@ struct CalculatorBrain {
                 description += " " + buildStringFromDouble(accumulator!)
                 performPendingBinaryOperation()
             case .clear:
-                accumulator = nil
+                accumulator = 0
                 description = ""
                 pendingBinaryOperation = nil
             }
@@ -97,6 +97,22 @@ struct CalculatorBrain {
     
     mutating func setOperand(variable named: String) {
         variable = named
+    }
+    
+    func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
+        func performOperation(_ operation: Operation) -> (result: Double?, isPending: Bool, description: String) {
+            return (result: nil, isPending: false, description: "")
+        }
+        
+        if variables == nil || variable == nil { return (result: nil, isPending: false, description: "") }
+        
+        let result: (Double?, Bool, String)
+        
+        if let operation = operations[variable!] {
+            result = performOperation(operation)
+        }
+        
+        return (result: nil, isPending: false, description: "")
     }
     
     mutating func performPendingBinaryOperation() {
