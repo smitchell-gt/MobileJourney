@@ -14,6 +14,21 @@ struct CalculatorBrain {
     private var variable: String?
     private var pendingBinaryOperation: PendingBinaryOperation?
     private var description: String = ""
+    private var history: [Action] = []
+    
+    private enum Action {
+        case value(String)
+        case operation(String)
+        
+        func get() -> String {
+            switch self {
+            case .value(let value):
+                return value
+            case .operation(let operation):
+                return operation
+            }
+        }
+    }
     
     private enum Operation {
         case constant(Double)
@@ -96,23 +111,24 @@ struct CalculatorBrain {
     }
     
     mutating func setOperand(variable named: String) {
-        variable = named
+        history.append(.value(named))
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
         func performOperation(_ operation: Operation) -> (result: Double?, isPending: Bool, description: String) {
-            return (result: nil, isPending: false, description: "")
+            return (nil, false, "")
         }
         
-        if variables == nil || variable == nil { return (result: nil, isPending: false, description: "") }
-        
-        let result: (Double?, Bool, String)
-        
-        if let operation = operations[variable!] {
-            result = performOperation(operation)
+        var result: (result: Double?, isPending: Bool, description: String) = (nil, false, "")
+        var callStack: [Action] = []
+        for action in history {
+            callStack.append(action)
+            
+            if let operation = operations[action.get()] {
+                result = performOperation(operation)
+            }
         }
-        
-        return (result: nil, isPending: false, description: "")
+        return result
     }
     
     mutating func performPendingBinaryOperation() {
