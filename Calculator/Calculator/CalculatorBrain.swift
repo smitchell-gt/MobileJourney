@@ -63,48 +63,48 @@ struct CalculatorBrain {
         }
     }
     
-    mutating func performOperation(_ symbol: String) {
-        if let operation = operations[symbol] {
-            switch operation {
-            case .constant(let value):
-                accumulator = value
-                
-                if !resultIsPending {
-                    description = buildStringFromDouble(accumulator!)
-                }
-            case .unaryOperation(let function):
-                if accumulator != nil {
-                    accumulator = function(accumulator!)
-                    
-                    if description.isEmpty {
-                        description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
-                    } else {
-                        description = symbol + "(" + description + ")"
-                    }
-                }
-            case .binaryOperation(let function):
-                if accumulator != nil {
-                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
-                    
-                    if description.isEmpty {
-                        description = buildStringFromDouble(accumulator!) + " " + symbol + " "
-                    } else {
-                        description += " " + symbol
-                    }
-                    
-                    accumulator = nil
-                }
-                break
-            case .equals:
-                description += " " + buildStringFromDouble(accumulator!)
-                performPendingBinaryOperation()
-            case .clear:
-                accumulator = 0
-                description = ""
-                pendingBinaryOperation = nil
-            }
-        }
-    }
+//    mutating func performOperation(_ symbol: String) {
+//        if let operation = operations[symbol] {
+//            switch operation {
+//            case .constant(let value):
+//                accumulator = value
+//                
+//                if !resultIsPending {
+//                    description = buildStringFromDouble(accumulator!)
+//                }
+//            case .unaryOperation(let function):
+//                if accumulator != nil {
+//                    accumulator = function(accumulator!)
+//                    
+//                    if description.isEmpty {
+//                        description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+//                    } else {
+//                        description = symbol + "(" + description + ")"
+//                    }
+//                }
+//            case .binaryOperation(let function):
+//                if accumulator != nil {
+//                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+//                    
+//                    if description.isEmpty {
+//                        description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+//                    } else {
+//                        description += " " + symbol
+//                    }
+//                    
+//                    accumulator = nil
+//                }
+//                break
+//            case .equals:
+//                description += " " + buildStringFromDouble(accumulator!)
+//                performPendingBinaryOperation()
+//            case .clear:
+//                accumulator = 0
+//                description = ""
+//                pendingBinaryOperation = nil
+//            }
+//        }
+//    }
     
     mutating func setOperand(_ operand: Double) {
         accumulator = operand
@@ -112,6 +112,10 @@ struct CalculatorBrain {
     
     mutating func setOperand(variable named: String) {
         history.append(.value(named))
+    }
+    
+    mutating func performOperation(_ symbol: String) {
+        history.append(.operation(symbol))
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
