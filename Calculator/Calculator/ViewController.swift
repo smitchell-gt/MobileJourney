@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
-            calculatorBrain.setOperand(displayValue)
+            calculatorBrain.setOperand(double: displayValue)
             userIsInTheMiddleOfTyping = false
         }
         
@@ -59,14 +59,18 @@ class ViewController: UIViewController {
             calculatorBrain.performOperation(mathematicalSymbol)
         }
         
-        if let result = calculatorBrain.result {
-            displayValue = result
+        let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate()
+        
+        if results.result != nil {
+            displayValue = results.result!
         }
         
-        displayHistory()
-    }
-    
-    func displayHistory() {
-        historyDisplay.text = calculatorBrain.getOperationHistory()
+        if results.description.isEmpty {
+            historyDisplay.text = results.description
+        } else if results.isPending {
+            historyDisplay.text = results.description + " ..."
+        } else {
+            historyDisplay.text = results.description + " ="
+        }
     }
 }

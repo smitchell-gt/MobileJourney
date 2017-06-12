@@ -108,6 +108,10 @@ struct CalculatorBrain {
         accumulator = operand
     }
     
+    mutating func setOperand(double value: Double) {
+        history.append(.value(String(value)))
+    }
+    
     mutating func setOperand(variable named: String) {
         history.append(.value(named))
     }
@@ -156,17 +160,34 @@ struct CalculatorBrain {
                 case .constant(let value):
                     accumulator = value
                     
+                    if !resultIsPending {
+                        description = buildStringFromDouble(accumulator!)
+                    }
+                    
                 case .unaryOperation(let function):
                     if accumulator != nil {
                         accumulator = function(accumulator!)
+                        
+                        if description.isEmpty {
+                            description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                        } else {
+                            description = symbol + "(" + description + ")"
+                        }
                     }
                     
                 case .binaryOperation(let function):
                     if accumulator != nil {
                         pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                        
+                        if description.isEmpty {
+                            description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+                        } else {
+                            description += " " + symbol
+                        }
                     }
                     
                 case .equals:
+                    description += " " + buildStringFromDouble(accumulator!)
                     performPendingBinaryOperation()
                 }
             }
@@ -181,7 +202,7 @@ struct CalculatorBrain {
             }
         }
         
-        return (result: accumulator, isPending: resultIsPending, description: "")
+        return (result: accumulator, isPending: resultIsPending, description: description)
     }
     
     mutating func performPendingBinaryOperation() {
