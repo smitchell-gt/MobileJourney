@@ -125,6 +125,7 @@ struct CalculatorBrain {
         var description = ""
         var constantOperand: String?
         var hasUnaryOperand: Bool = false
+        var operand: String?
         
         var resultIsPending: Bool {
             get {
@@ -134,8 +135,11 @@ struct CalculatorBrain {
         
         func convertToDouble(_ action: String) -> Double {
             if let double = Double(action) {
+                operand = buildStringFromDouble(double)
                 return double
             }
+            
+            operand = action
             
             if variables == nil {
                 return 0.0
@@ -170,9 +174,9 @@ struct CalculatorBrain {
                 case .unaryOperation(let function):
                     if accumulator != nil {
                         if description.isEmpty {
-                            description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                            description = symbol + "(" + operand! + ")"
                         } else if resultIsPending {
-                            description += " " + symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                            description += " " + symbol + "(" + operand! + ")"
                             hasUnaryOperand = true
                         } else {
                             description = symbol + "(" + description + ")"
@@ -186,7 +190,7 @@ struct CalculatorBrain {
                         pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                         
                         if description.isEmpty {
-                            description = buildStringFromDouble(accumulator!) + " " + symbol
+                            description = operand! + " " + symbol
                         } else {
                             description += " " + symbol
                         }
@@ -196,7 +200,7 @@ struct CalculatorBrain {
                     if constantOperand != nil {
                         description += " " + constantOperand!
                     } else if !hasUnaryOperand {
-                        description += " " + buildStringFromDouble(accumulator!)
+                        description += " " + operand!
                     }
                     performPendingBinaryOperation()
                     hasUnaryOperand = false
