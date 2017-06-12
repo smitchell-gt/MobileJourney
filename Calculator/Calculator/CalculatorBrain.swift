@@ -119,17 +119,73 @@ struct CalculatorBrain {
     }
     
     func evaluate(using variables: Dictionary<String,Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
-        func performOperation(_ operation: Operation) -> (result: Double?, isPending: Bool, description: String) {
-            return (nil, false, "")
-        }
+        var accumulator: Double?
+        var pendingBinaryOperation: PendingBinaryOperation?
         
-        var result: (result: Double?, isPending: Bool, description: String) = (nil, false, "")
-        for action in history {
-            if let operation = operations[action.get()] {
-                result = performOperation(operation)
+        var resultIsPending: Bool {
+            get {
+                return pendingBinaryOperation != nil
             }
         }
-        return result
+        
+        func convertToDouble(_ action: String) -> Double {
+            if let double = Double(action) {
+                return double
+            }
+            
+            if variables == nil {
+                return 0.0
+            }
+            
+            if let double = variables![action] {
+                return double
+            }
+            
+            return 0.0
+        }
+        
+        func performPendingBinaryOperation() {
+            if accumulator != nil {
+                accumulator = pendingBinaryOperation?.perform(with: accumulator!)
+                pendingBinaryOperation = nil
+            }
+        }
+        
+        func performOperation(_ symbol: String) {
+            if let operation = operations[symbol] {
+                switch operation {
+                case .constant(let value):
+                    accumulator = value
+                    
+                case .unaryOperation(let function):
+                    if accumulator != nil {
+                        accumulator = function(accumulator!)
+                    }
+                    
+                case .binaryOperation(let function):
+                    if accumulator != nil {
+                        pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    }
+                    
+                case .equals:
+                    performPendingBinaryOperation()
+                case .clear:
+                    accumulator = 0
+                    pendingBinaryOperation = nil
+                }
+            }
+        }
+        
+        for action in history {
+            switch action {
+            case .value(let value):
+                accumulator = convertToDouble(value)
+            case .operation(let symbol):
+                performOperation(symbol)
+            }
+        }
+        
+        return (result: accumulator, isPending: resultIsPending, description: "")
     }
     
     mutating func performPendingBinaryOperation() {
