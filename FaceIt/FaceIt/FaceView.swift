@@ -25,8 +25,9 @@ class FaceView: UIView {
         }
     }
     
+    // 1.0: full smile, -1.0: full frown
     @IBInspectable
-    var mouthCurvature: Double = -0.5 { // 1.0: full smile, -1.0: full frown
+    var mouthCurvature: Double = -0.5 {
         didSet {
             setNeedsDisplay()
         }
