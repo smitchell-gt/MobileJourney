@@ -123,6 +123,8 @@ struct CalculatorBrain {
         var accumulator: Double?
         var pendingBinaryOperation: PendingBinaryOperation?
         var description = ""
+        var constantOperand: String?
+        var hasUnaryOperand: Bool = false
         
         var resultIsPending: Bool {
             get {
@@ -160,18 +162,23 @@ struct CalculatorBrain {
                     accumulator = value
                     
                     if !resultIsPending {
-                        description = buildStringFromDouble(accumulator!)
+                        description = symbol
+                    } else {
+                        constantOperand = symbol
                     }
                     
                 case .unaryOperation(let function):
                     if accumulator != nil {
-                        accumulator = function(accumulator!)
-                        
                         if description.isEmpty {
                             description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                        } else if resultIsPending {
+                            description += " " + symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                            hasUnaryOperand = true
                         } else {
                             description = symbol + "(" + description + ")"
                         }
+                        
+                        accumulator = function(accumulator!)
                     }
                     
                 case .binaryOperation(let function):
@@ -179,15 +186,20 @@ struct CalculatorBrain {
                         pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
                         
                         if description.isEmpty {
-                            description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+                            description = buildStringFromDouble(accumulator!) + " " + symbol
                         } else {
                             description += " " + symbol
                         }
                     }
                     
                 case .equals:
-                    description += " " + buildStringFromDouble(accumulator!)
+                    if constantOperand != nil {
+                        description += " " + constantOperand!
+                    } else if !hasUnaryOperand {
+                        description += " " + buildStringFromDouble(accumulator!)
+                    }
                     performPendingBinaryOperation()
+                    hasUnaryOperand = false
                 }
             }
         }
@@ -195,6 +207,9 @@ struct CalculatorBrain {
         for action in history {
             switch action {
             case .value(let value):
+                if accumulator != convertToDouble(value) && !resultIsPending {
+                    description = ""
+                }
                 accumulator = convertToDouble(value)
             case .operation(let symbol):
                 performOperation(symbol)
