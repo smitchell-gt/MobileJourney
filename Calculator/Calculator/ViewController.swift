@@ -49,6 +49,12 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func clear(_ sender: UIButton) {
+        calculatorBrain.clear()
+        displayValue = 0
+        updateHistory(description: "", resultIsPending: false)
+    }
+    
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             calculatorBrain.setOperand(double: displayValue)
@@ -65,12 +71,16 @@ class ViewController: UIViewController {
             displayValue = results.result!
         }
         
-        if results.description.isEmpty {
-            historyDisplay.text = results.description
-        } else if results.isPending {
-            historyDisplay.text = results.description + " ..."
+        updateHistory(description: results.description, resultIsPending: results.isPending)
+    }
+    
+    func updateHistory(description: String, resultIsPending: Bool) {
+        if description.isEmpty {
+            historyDisplay.text = description
+        } else if resultIsPending {
+            historyDisplay.text = description + " ..."
         } else {
-            historyDisplay.text = results.description + " ="
+            historyDisplay.text = description + " ="
         }
     }
 }

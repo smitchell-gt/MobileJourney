@@ -11,7 +11,6 @@ import Foundation
 struct CalculatorBrain {
     
     private var accumulator: Double?
-    private var variable: String?
     private var pendingBinaryOperation: PendingBinaryOperation?
     private var description: String = ""
     private var history: [Action] = []
@@ -210,6 +209,10 @@ struct CalculatorBrain {
             accumulator = pendingBinaryOperation?.perform(with: accumulator!)
             pendingBinaryOperation = nil
         }
+    }
+    
+    mutating func clear() {
+        history = []
     }
     
     func getOperationHistory() -> String {
