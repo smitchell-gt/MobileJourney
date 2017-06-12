@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     var userIsInTheMiddleOfTyping = false
     private var calculatorBrain: CalculatorBrain = CalculatorBrain()
+    private var variables: Dictionary<String,Double>?
     
     var displayValue: Double {
         get {
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
     @IBAction func clear(_ sender: UIButton) {
         calculatorBrain.clear()
         displayValue = 0
+        variables = nil
         updateHistory(description: "", resultIsPending: false)
     }
     
@@ -65,13 +67,31 @@ class ViewController: UIViewController {
             calculatorBrain.performOperation(mathematicalSymbol)
         }
         
-        let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate()
+        let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate(using: variables)
         
         if results.result != nil {
             displayValue = results.result!
         }
         
         updateHistory(description: results.description, resultIsPending: results.isPending)
+    }
+    
+    @IBAction func setMemory(_ sender: UIButton) {
+        variables = [
+            "M": displayValue
+        ]
+        
+        let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate(using: variables)
+        
+        if results.result != nil {
+            displayValue = results.result!
+        }
+        
+        updateHistory(description: results.description, resultIsPending: results.isPending)
+    }
+    
+    @IBAction func useMemory(_ sender: UIButton) {
+        calculatorBrain.setOperand(variable: "M")
     }
     
     func updateHistory(description: String, resultIsPending: Bool) {
