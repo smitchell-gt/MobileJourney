@@ -10,9 +10,6 @@ import Foundation
 
 struct CalculatorBrain {
     
-    private var accumulator: Double?
-    private var pendingBinaryOperation: PendingBinaryOperation?
-    private var description: String = ""
     private var history: [Action] = []
     
     private enum Action {
@@ -60,53 +57,6 @@ struct CalculatorBrain {
         }
     }
     
-//    mutating func performOperation(_ symbol: String) {
-//        if let operation = operations[symbol] {
-//            switch operation {
-//            case .constant(let value):
-//                accumulator = value
-//                
-//                if !resultIsPending {
-//                    description = buildStringFromDouble(accumulator!)
-//                }
-//            case .unaryOperation(let function):
-//                if accumulator != nil {
-//                    accumulator = function(accumulator!)
-//                    
-//                    if description.isEmpty {
-//                        description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
-//                    } else {
-//                        description = symbol + "(" + description + ")"
-//                    }
-//                }
-//            case .binaryOperation(let function):
-//                if accumulator != nil {
-//                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
-//                    
-//                    if description.isEmpty {
-//                        description = buildStringFromDouble(accumulator!) + " " + symbol + " "
-//                    } else {
-//                        description += " " + symbol
-//                    }
-//                    
-//                    accumulator = nil
-//                }
-//                break
-//            case .equals:
-//                description += " " + buildStringFromDouble(accumulator!)
-//                performPendingBinaryOperation()
-//            case .clear:
-//                accumulator = 0
-//                description = ""
-//                pendingBinaryOperation = nil
-//            }
-//        }
-//    }
-    
-    mutating func setOperand(_ operand: Double) {
-        accumulator = operand
-    }
-    
     mutating func setOperand(double value: Double) {
         history.append(.value(String(value)))
     }
@@ -115,7 +65,7 @@ struct CalculatorBrain {
         history.append(.value(named))
     }
     
-    mutating func performOperation(_ symbol: String) {
+    mutating func performOperation(with symbol: String) {
         history.append(.operation(symbol))
     }
     
@@ -225,13 +175,6 @@ struct CalculatorBrain {
         return (result: accumulator, isPending: resultIsPending, description: description)
     }
     
-    mutating func performPendingBinaryOperation() {
-        if accumulator != nil {
-            accumulator = pendingBinaryOperation?.perform(with: accumulator!)
-            pendingBinaryOperation = nil
-        }
-    }
-    
     mutating func clear() {
         history = []
     }
@@ -239,16 +182,6 @@ struct CalculatorBrain {
     mutating func popLastActionFromHistory() {
         if !history.isEmpty {
             _ = history.popLast()!
-        }
-    }
-    
-    func getOperationHistory() -> String {
-        if description.isEmpty { return "" }
-        
-        if resultIsPending {
-            return description + " ..."
-        } else {
-            return description + " ="
         }
     }
     
@@ -260,16 +193,90 @@ struct CalculatorBrain {
         }
     }
     
+    @available(*, deprecated)
+    private var accumulator: Double?
+    
+    @available(*, deprecated)
+    private var pendingBinaryOperation: PendingBinaryOperation?
+    
+    @available(*, deprecated)
+    private var description: String = ""
+    
+    @available(*, deprecated)
+    mutating func performPendingBinaryOperation() {
+        if accumulator != nil {
+            accumulator = pendingBinaryOperation?.perform(with: accumulator!)
+            pendingBinaryOperation = nil
+        }
+    }
+    
+    @available(*, deprecated)
     var resultIsPending: Bool {
         get {
             return pendingBinaryOperation != nil
         }
     }
     
+    @available(*, deprecated)
     var result: Double? {
         get {
             return accumulator
         }
     }
     
+    @available(*, deprecated)
+    func getOperationHistory() -> String {
+        if description.isEmpty { return "" }
+        
+        if resultIsPending {
+            return description + " ..."
+        } else {
+            return description + " ="
+        }
+    }
+    
+    @available(*, deprecated)
+    mutating func setOperand(_ operand: Double) {
+        accumulator = operand
+    }
+    
+    @available(*, deprecated)
+    mutating func performOperation(_ symbol: String) {
+        if let operation = operations[symbol] {
+            switch operation {
+            case .constant(let value):
+                accumulator = value
+                
+                if !resultIsPending {
+                    description = buildStringFromDouble(accumulator!)
+                }
+            case .unaryOperation(let function):
+                if accumulator != nil {
+                    accumulator = function(accumulator!)
+                    
+                    if description.isEmpty {
+                        description = symbol + "(" + buildStringFromDouble(accumulator!) + ")"
+                    } else {
+                        description = symbol + "(" + description + ")"
+                    }
+                }
+            case .binaryOperation(let function):
+                if accumulator != nil {
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    
+                    if description.isEmpty {
+                        description = buildStringFromDouble(accumulator!) + " " + symbol + " "
+                    } else {
+                        description += " " + symbol
+                    }
+                    
+                    accumulator = nil
+                }
+                break
+            case .equals:
+                description += " " + buildStringFromDouble(accumulator!)
+                performPendingBinaryOperation()
+            }
+        }
+    }
 }

@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         }
         
         if let mathematicalSymbol = sender.currentTitle {
-            calculatorBrain.performOperation(mathematicalSymbol)
+            calculatorBrain.performOperation(with: mathematicalSymbol)
         }
         
         let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate(using: variables)
