@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
+    @IBOutlet weak var memoryDisplay: UILabel!
     @IBOutlet weak var historyDisplay: UILabel!
     
     var userIsInTheMiddleOfTyping = false
@@ -54,7 +55,9 @@ class ViewController: UIViewController {
         calculatorBrain.clear()
         displayValue = 0
         variables = nil
+        userIsInTheMiddleOfTyping = false
         updateHistory(description: "", resultIsPending: false)
+        updateMemoryLabel(value: 0)
     }
     
     @IBAction func performOperation(_ sender: UIButton) {
@@ -81,6 +84,8 @@ class ViewController: UIViewController {
             "M": displayValue
         ]
         
+        updateMemoryLabel(value: displayValue)
+        
         let results: (result: Double?, isPending: Bool, description: String) = calculatorBrain.evaluate(using: variables)
         
         if results.result != nil {
@@ -94,6 +99,34 @@ class ViewController: UIViewController {
         calculatorBrain.setOperand(variable: "M")
     }
     
+    @IBAction func undo(_ sender: UIButton) {
+        if userIsInTheMiddleOfTyping {
+            if !(display.text?.isEmpty)! {
+                let textCurrentlyInDisplay = display.text!
+                let lastCharacterIndex = textCurrentlyInDisplay.index(before: textCurrentlyInDisplay.endIndex)
+                display.text = textCurrentlyInDisplay.substring(to: lastCharacterIndex)
+            }
+            
+            if (display.text?.isEmpty)! {
+                displayValue = 0
+                userIsInTheMiddleOfTyping = false
+            }
+        }
+        if !userIsInTheMiddleOfTyping {
+            _ = calculatorBrain.popLastActionFromHistory()
+            
+            let results = calculatorBrain.evaluate(using: variables)
+            
+            if results.result != nil {
+                displayValue = results.result!
+            } else {
+                displayValue = 0
+            }
+            
+            updateHistory(description: results.description, resultIsPending: results.isPending)
+        }
+    }
+    
     func updateHistory(description: String, resultIsPending: Bool) {
         if description.isEmpty {
             historyDisplay.text = description
@@ -102,5 +135,9 @@ class ViewController: UIViewController {
         } else {
             historyDisplay.text = description + " ="
         }
+    }
+    
+    func updateMemoryLabel(value: Double) {
+        memoryDisplay.text = "M=" + calculatorBrain.buildStringFromDouble(value)
     }
 }

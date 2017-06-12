@@ -197,13 +197,15 @@ struct CalculatorBrain {
                     }
                     
                 case .equals:
-                    if constantOperand != nil {
-                        description += " " + constantOperand!
-                    } else if !hasUnaryOperand {
-                        description += " " + operand!
+                    if accumulator != nil {
+                        if constantOperand != nil {
+                            description += " " + constantOperand!
+                        } else if !hasUnaryOperand {
+                            description += " " + operand!
+                        }
+                        performPendingBinaryOperation()
+                        hasUnaryOperand = false
                     }
-                    performPendingBinaryOperation()
-                    hasUnaryOperand = false
                 }
             }
         }
@@ -232,6 +234,12 @@ struct CalculatorBrain {
     
     mutating func clear() {
         history = []
+    }
+    
+    mutating func popLastActionFromHistory() {
+        if !history.isEmpty {
+            _ = history.popLast()!
+        }
     }
     
     func getOperationHistory() -> String {
