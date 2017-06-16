@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='IOSStarterTests.xctest' tests='4' failures='0'>
+  <testsuite name='IOSStarterUITests.IOSStarterUITests' tests='1' failures='0'>
+    <testcase classname='IOSStarterUITests.IOSStarterUITests' name='testExample' time='5.771'/>
+  </testsuite>
+  <testsuite name='IOSStarterTests.IOSStarterTests' tests='2' failures='0'>
+    <testcase classname='IOSStarterTests.IOSStarterTests' name='testExample' time='0.001'/>
+    <testcase classname='IOSStarterTests.IOSStarterTests' name='testPerformanceExample' time='0.383'/>
+  </testsuite>
+  <testsuite name='IOSStarterTests.YourSpec' tests='1' failures='0'>
+    <testcase classname='IOSStarterTests.YourSpec' name='Your_Spec__when_the_condition_is_met__does_this_thing' time='0.002'/>
+  </testsuite>
+</testsuites>

@@ -14,6 +14,14 @@
 		46BD98B91EF03E30007E49C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46BD98B71EF03E30007E49C3 /* LaunchScreen.storyboard */; };
 		46BD98C41EF03E30007E49C3 /* IOSStarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD98C31EF03E30007E49C3 /* IOSStarterTests.swift */; };
 		46BD98CF1EF03E30007E49C3 /* IOSStarterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD98CE1EF03E30007E49C3 /* IOSStarterUITests.swift */; };
+		46BD98DE1EF05937007E49C3 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BD98DD1EF05937007E49C3 /* Quick.framework */; };
+		46BD98E01EF05939007E49C3 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BD98DF1EF05939007E49C3 /* Nimble.framework */; };
+		46BD98E41EF06A42007E49C3 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 46BD98E11EF0593A007E49C3 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46BD98E71EF06A86007E49C3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BD98E11EF0593A007E49C3 /* Alamofire.framework */; };
+		46BD98E91EF06F36007E49C3 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 46BD98DF1EF05939007E49C3 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46BD98EA1EF06F36007E49C3 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 46BD98DD1EF05937007E49C3 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46DCE0831EF072D300CE78E7 /* YourSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DCE0821EF072D300CE78E7 /* YourSpec.swift */; };
+		46DEDE391EF2C51E0068B947 /* YourThing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DEDE381EF2C51E0068B947 /* YourThing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +41,30 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		46BD98E31EF06A2C007E49C3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				46BD98E41EF06A42007E49C3 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46BD98E81EF06F29007E49C3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				46BD98E91EF06F36007E49C3 /* Nimble.framework in CopyFiles */,
+				46BD98EA1EF06F36007E49C3 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		46BD98AB1EF03E30007E49C3 /* IOSStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46BD98AE1EF03E30007E49C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +79,11 @@
 		46BD98CA1EF03E30007E49C3 /* IOSStarterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSStarterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46BD98CE1EF03E30007E49C3 /* IOSStarterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSStarterUITests.swift; sourceTree = "<group>"; };
 		46BD98D01EF03E30007E49C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46BD98DD1EF05937007E49C3 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		46BD98DF1EF05939007E49C3 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		46BD98E11EF0593A007E49C3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		46DCE0821EF072D300CE78E7 /* YourSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourSpec.swift; sourceTree = "<group>"; };
+		46DEDE381EF2C51E0068B947 /* YourThing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YourThing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BD98E71EF06A86007E49C3 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46BD98DE1EF05937007E49C3 /* Quick.framework in Frameworks */,
+				46BD98E01EF05939007E49C3 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +121,7 @@
 				46BD98C21EF03E30007E49C3 /* IOSStarterTests */,
 				46BD98CD1EF03E30007E49C3 /* IOSStarterUITests */,
 				46BD98AC1EF03E30007E49C3 /* Products */,
+				46BD98DC1EF05937007E49C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +144,7 @@
 				46BD98B51EF03E30007E49C3 /* Assets.xcassets */,
 				46BD98B71EF03E30007E49C3 /* LaunchScreen.storyboard */,
 				46BD98BA1EF03E30007E49C3 /* Info.plist */,
+				46DEDE381EF2C51E0068B947 /* YourThing.swift */,
 			);
 			path = IOSStarter;
 			sourceTree = "<group>";
@@ -112,6 +154,7 @@
 			children = (
 				46BD98C31EF03E30007E49C3 /* IOSStarterTests.swift */,
 				46BD98C51EF03E30007E49C3 /* Info.plist */,
+				46DCE0821EF072D300CE78E7 /* YourSpec.swift */,
 			);
 			path = IOSStarterTests;
 			sourceTree = "<group>";
@@ -125,6 +168,16 @@
 			path = IOSStarterUITests;
 			sourceTree = "<group>";
 		};
+		46BD98DC1EF05937007E49C3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46BD98E11EF0593A007E49C3 /* Alamofire.framework */,
+				46BD98DF1EF05939007E49C3 /* Nimble.framework */,
+				46BD98DD1EF05937007E49C3 /* Quick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +188,7 @@
 				46BD98A71EF03E30007E49C3 /* Sources */,
 				46BD98A81EF03E30007E49C3 /* Frameworks */,
 				46BD98A91EF03E30007E49C3 /* Resources */,
+				46BD98E31EF06A2C007E49C3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -152,6 +206,7 @@
 				46BD98BB1EF03E30007E49C3 /* Sources */,
 				46BD98BC1EF03E30007E49C3 /* Frameworks */,
 				46BD98BD1EF03E30007E49C3 /* Resources */,
+				46BD98E81EF06F29007E49C3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -260,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46BD98B11EF03E30007E49C3 /* ViewController.swift in Sources */,
+				46DEDE391EF2C51E0068B947 /* YourThing.swift in Sources */,
 				46BD98AF1EF03E30007E49C3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46BD98C41EF03E30007E49C3 /* IOSStarterTests.swift in Sources */,
+				46DCE0831EF072D300CE78E7 /* YourSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +469,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IOSStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = thoughtworks.smitchell.IOSStarter;
@@ -424,6 +485,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IOSStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = thoughtworks.smitchell.IOSStarter;
@@ -437,6 +502,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IOSStarterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = thoughtworks.smitchell.IOSStarterTests;
@@ -451,6 +520,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = IOSStarterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = thoughtworks.smitchell.IOSStarterTests;
@@ -505,6 +578,7 @@
 				46BD98D51EF03E30007E49C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46BD98D61EF03E30007E49C3 /* Build configuration list for PBXNativeTarget "IOSStarterTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +587,7 @@
 				46BD98D81EF03E30007E49C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		46BD98D91EF03E30007E49C3 /* Build configuration list for PBXNativeTarget "IOSStarterUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +596,7 @@
 				46BD98DB1EF03E30007E49C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
