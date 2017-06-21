@@ -53,6 +53,7 @@ playground.xcworkspace
 # Carthage/Checkouts
 
 Carthage/Build
+**/Carthage/
 
 # fastlane
 #
@@ -69,3 +70,10 @@ fastlane/xcov_report
 fastlane/README.md
 
 *.mobileprovision
+
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+**/fastlane/xcov_report
+**/fastlane/README.md
