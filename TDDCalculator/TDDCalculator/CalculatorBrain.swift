@@ -17,7 +17,16 @@ class CalculatorBrain {
     }
     
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
-        return (result: Double.pi, isPending: false, description: "")
+        
+        var result: Double?
+        
+        if operation == "π" {
+            result = Double.pi
+        } else {
+            result = M_E
+        }
+        
+        return (result: result, isPending: false, description: "")
     }
     
     func clear() {

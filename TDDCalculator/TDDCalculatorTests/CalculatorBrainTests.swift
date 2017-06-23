@@ -18,6 +18,19 @@ class CalculatorBrainSpec: QuickSpec {
                     // then
                     expect(actual.result).to(equal(expected.result))
                 }
+                
+                it("should return value of pi when operation is π") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.performOperation(with: "e")
+                    let expected = (result: M_E, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
             }
         }
     }
