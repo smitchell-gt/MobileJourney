@@ -2,6 +2,8 @@ import Foundation
 
 class CalculatorBrain {
     
+    var operation: String?
+    
     func setOperand(variable: String) {
         
     }
@@ -11,11 +13,11 @@ class CalculatorBrain {
     }
     
     func performOperation(with symbol: String) {
-        
+        operation = symbol
     }
     
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
-        return (result: nil, isPending: false, description: "")
+        return (result: Double.pi, isPending: false, description: "")
     }
     
     func clear() {
@@ -29,4 +31,5 @@ class CalculatorBrain {
     func buildStringFromDouble(_ value: Double) -> String {
         return ""
     }
+    
 }

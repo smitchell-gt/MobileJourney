@@ -1,12 +1,24 @@
-//
-//  CalculatorBrainTests.swift
-//  TDDCalculator
-//
-//  Created by Steven Mitchell on 6/16/17.
-//  Copyright © 2017 ThoughtWorks. All rights reserved.
-//
+@testable import TDDCalculator
+import Quick
+import Nimble
 
-import Foundation
-import TDDCalculator
-
-
+class CalculatorBrainSpec: QuickSpec {
+    override func spec() {
+        describe("Calculator Brain") {
+            context("evaluate constants") {
+                it("should return value of pi when operation is π") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.performOperation(with: "π")
+                    let expected = (result: Double.pi, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
+            }
+        }
+    }
+}
