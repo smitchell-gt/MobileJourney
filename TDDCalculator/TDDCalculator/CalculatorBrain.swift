@@ -16,7 +16,8 @@ class CalculatorBrain {
         "√": Operation.unary(sqrt),
         "±": Operation.unary({ -$0 }),
         "sin": Operation.unary(sin),
-        "cos": Operation.unary(cos)
+        "cos": Operation.unary(cos),
+        "tan": Operation.unary(tan)
     ]
     
     func setOperand(variable: String) {

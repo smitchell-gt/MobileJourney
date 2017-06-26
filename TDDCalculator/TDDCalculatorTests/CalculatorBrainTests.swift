@@ -76,12 +76,26 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.result).to(equal(expected.result))
                 }
                 
-                it("should return value of -1 when operation is sin(π)") {
+                it("should return value of -1 when operation is cos(π)") {
                     // if
                     let calculatorBrain = CalculatorBrain()
                     calculatorBrain.setOperand(double: Double.pi)
                     calculatorBrain.performOperation(with: "cos")
                     let expected = (result: -1.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
+                
+                it("should return value of 0 when operation is tan(0)") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 0)
+                    calculatorBrain.performOperation(with: "tan")
+                    let expected = (result: 0.0, isPending: false, description: "")
                     
                     // when
                     let actual = calculatorBrain.evaluate(using: nil)
