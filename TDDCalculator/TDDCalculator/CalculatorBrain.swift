@@ -13,7 +13,9 @@ class CalculatorBrain {
     private var operations: Dictionary<String,Operation> = [
         "π": Operation.constant(Double.pi),
         "e": Operation.constant(M_E),
-        "√": Operation.unary(sqrt)
+        "√": Operation.unary(sqrt),
+        "±": Operation.unary({ -$0 }),
+        "sin": Operation.unary(sin)
     ]
     
     func setOperand(variable: String) {

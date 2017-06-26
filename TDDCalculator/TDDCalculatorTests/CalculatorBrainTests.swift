@@ -47,6 +47,36 @@ class CalculatorBrainSpec: QuickSpec {
                     // then
                     expect(actual.result).to(equal(expected.result))
                 }
+                
+                it("should return value of -4 when operation is ±4") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 4)
+                    calculatorBrain.performOperation(with: "±")
+                    let expected = (result: -4.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
+                
+                
+                
+                it("should return value of 1 when operation is sin(π/2)") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: Double.pi/2)
+                    calculatorBrain.performOperation(with: "sin")
+                    let expected = (result: 1.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
             }
         }
     }
