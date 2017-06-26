@@ -8,6 +8,7 @@ class CalculatorBrain {
     private enum Operation {
         case constant(Double)
         case unary((Double) -> Double)
+        case binary((Double, Double) -> Double)
     }
     
     private var operations: Dictionary<String,Operation> = [
@@ -17,7 +18,9 @@ class CalculatorBrain {
         "±": Operation.unary({ -$0 }),
         "sin": Operation.unary(sin),
         "cos": Operation.unary(cos),
-        "tan": Operation.unary(tan)
+        "tan": Operation.unary(tan),
+        "+": Operation.binary({ $0 + $1 }),
+        "-": Operation.binary({ $0 - $1 })
     ]
     
     func setOperand(variable: String) {
@@ -35,6 +38,7 @@ class CalculatorBrain {
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
         
         var result: Double?
+        var isPending: Bool = false
         
         if let operation = operations[operationSymbol!] {
             switch operation {
@@ -42,10 +46,12 @@ class CalculatorBrain {
                 result = value
             case .unary(let function):
                 result = function(operand)
+            case .binary:
+                isPending = true
             }
         }
         
-        return (result: result, isPending: false, description: "")
+        return (result: result, isPending: isPending, description: "")
     }
     
     func clear() {
