@@ -2,28 +2,43 @@ import Foundation
 
 class CalculatorBrain {
     
-    var operation: String?
+    var operationSymbol: String?
+    var operand: Double = 0
+    
+    private enum Operation {
+        case constant(Double)
+        case unary((Double) -> Double)
+    }
+    
+    private var operations: Dictionary<String,Operation> = [
+        "π": Operation.constant(Double.pi),
+        "e": Operation.constant(M_E),
+        "√": Operation.unary(sqrt)
+    ]
     
     func setOperand(variable: String) {
         
     }
     
     func setOperand(double: Double) {
-        
+        operand = double
     }
     
     func performOperation(with symbol: String) {
-        operation = symbol
+        operationSymbol = symbol
     }
     
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
         
         var result: Double?
         
-        if operation == "π" {
-            result = Double.pi
-        } else {
-            result = M_E
+        if let operation = operations[operationSymbol!] {
+            switch operation {
+            case .constant(let value):
+                result = value
+            case .unary(let function):
+                result = function(operand)
+            }
         }
         
         return (result: result, isPending: false, description: "")

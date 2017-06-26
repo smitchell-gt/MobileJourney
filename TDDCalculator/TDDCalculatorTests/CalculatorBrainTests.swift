@@ -32,6 +32,22 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.result).to(equal(expected.result))
                 }
             }
+            
+            context("evaluate unary operations") {
+                it("should return value of 2 when operation is √4") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 4)
+                    calculatorBrain.performOperation(with: "√")
+                    let expected = (result: 2.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                }
+            }
         }
     }
 }
