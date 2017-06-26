@@ -20,7 +20,9 @@ class CalculatorBrain {
         "cos": Operation.unary(cos),
         "tan": Operation.unary(tan),
         "+": Operation.binary({ $0 + $1 }),
-        "-": Operation.binary({ $0 - $1 })
+        "-": Operation.binary({ $0 - $1 }),
+        "×": Operation.binary({ $0 * $1 }),
+        "÷": Operation.binary({ $0 / $1 })
     ]
     
     func setOperand(variable: String) {

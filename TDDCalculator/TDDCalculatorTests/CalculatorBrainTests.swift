@@ -120,11 +120,39 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.isPending).to(beTrue())
                 }
                 
-                it("should return value of nil and isPending true when operation is 2 -") {
+                it("should return value of nil and isPending true when operation is 3 -") {
                     // if
                     let calculatorBrain = CalculatorBrain()
-                    calculatorBrain.setOperand(double: 2)
+                    calculatorBrain.setOperand(double: 3)
                     calculatorBrain.performOperation(with: "-")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(beNil())
+                    expect(actual.isPending).to(beTrue())
+                }
+                
+                it("should return value of nil and isPending true when operation is 4 *") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 4)
+                    calculatorBrain.performOperation(with: "×")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(beNil())
+                    expect(actual.isPending).to(beTrue())
+                }
+                
+                it("should return value of nil and isPending true when operation is 5 /") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 5)
+                    calculatorBrain.performOperation(with: "÷")
                     
                     // when
                     let actual = calculatorBrain.evaluate(using: nil)
