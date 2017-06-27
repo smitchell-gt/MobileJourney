@@ -2,13 +2,16 @@ import Foundation
 
 class CalculatorBrain {
     
-    var operationSymbol: String?
-    var operand: Double = 0
+    private enum Action {
+        case operand(Double)
+        case operation(String)
+    }
     
     private enum Operation {
         case constant(Double)
         case unary((Double) -> Double)
         case binary((Double, Double) -> Double)
+        case equals
     }
     
     private var operations: Dictionary<String,Operation> = [
@@ -22,34 +25,54 @@ class CalculatorBrain {
         "+": Operation.binary({ $0 + $1 }),
         "-": Operation.binary({ $0 - $1 }),
         "×": Operation.binary({ $0 * $1 }),
-        "÷": Operation.binary({ $0 / $1 })
+        "÷": Operation.binary({ $0 / $1 }),
+        "=": Operation.equals
     ]
+    
+    private var history: [Action] = []
     
     func setOperand(variable: String) {
         
     }
     
     func setOperand(double: Double) {
-        operand = double
+        history.append(Action.operand(double))
     }
     
     func performOperation(with symbol: String) {
-        operationSymbol = symbol
+        history.append(Action.operation(symbol))
     }
     
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
         
+        var operand: Double?
         var result: Double?
         var isPending: Bool = false
+        var pendingOperation: ((Double,Double) -> Double)?
+        var pendingOperand: Double?
         
-        if let operation = operations[operationSymbol!] {
-            switch operation {
-            case .constant(let value):
-                result = value
-            case .unary(let function):
-                result = function(operand)
-            case .binary:
-                isPending = true
+        for action in history {
+            switch action {
+            case .operand(let value):
+                operand = value
+            case .operation(let symbol):
+                if let operation = operations[symbol] {
+                    switch operation {
+                    case .constant(let value):
+                        result = value // what if operation is pending?
+                    case .unary(let function):
+                        result = function(operand!) // what if operation is pending?
+                    case .binary(let function):
+                        pendingOperation = function
+                        pendingOperand = operand
+                        isPending = true
+                    case .equals:
+                        if isPending {
+                            result = pendingOperation!(pendingOperand!, operand!)
+                            isPending = false
+                        }
+                    }
+                }
             }
         }
         

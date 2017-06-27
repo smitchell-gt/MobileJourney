@@ -162,6 +162,26 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.isPending).to(beTrue())
                 }
             }
+            
+            context("evaluate pending operations") {
+                it("should return value of 5 and isPending of false when operation is 2 + 3 =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 2)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expected = (result: 5.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                    expect(actual.isPending).to(equal(expected.isPending))
+                }
+            }
         }
     }
 }
