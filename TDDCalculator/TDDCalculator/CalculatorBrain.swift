@@ -59,7 +59,8 @@ class CalculatorBrain {
                 if let operation = operations[symbol] {
                     switch operation {
                     case .constant(let value):
-                        result = value // what if operation is pending?
+                        result = value
+                        operand = value
                     case .unary(let function):
                         result = function(operand!) // what if operation is pending?
                     case .binary(let function):
