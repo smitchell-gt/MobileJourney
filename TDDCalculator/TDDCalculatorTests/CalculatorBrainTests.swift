@@ -237,7 +237,7 @@ class CalculatorBrainSpec: QuickSpec {
                 }
             }
             
-            context("evaluate constant while operation is pending") {
+            context("evaluate binary operations with constants") {
                 it("should return value of 4.14 when operation is 1 + π =") {
                     // if
                     let calculatorBrain = CalculatorBrain()
@@ -284,6 +284,65 @@ class CalculatorBrainSpec: QuickSpec {
                     calculatorBrain.performOperation(with: "π")
                     
                     let expected = (result: Double.pi, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                    expect(actual.isPending).to(equal(expected.isPending))
+                }
+            }
+            
+            context("evaluate unary operations within binary operations") {
+                it("should return value of 4 when operation is 1 + 9 √ =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 1)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "√")
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expected = (result: 4.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                    expect(actual.isPending).to(equal(expected.isPending))
+                }
+                
+                it("should return value of 4 when operation is 9 √ + 1 =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "√")
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 1)
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expected = (result: 4.0, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expected.result))
+                    expect(actual.isPending).to(equal(expected.isPending))
+                }
+                
+                it("should return value of 2 when operation is 3 + 1 = √") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 1)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.performOperation(with: "√")
+                    
+                    let expected = (result: 2.0, isPending: false, description: "")
                     
                     // when
                     let actual = calculatorBrain.evaluate(using: nil)

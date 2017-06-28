@@ -62,7 +62,8 @@ class CalculatorBrain {
                         result = value
                         operand = value
                     case .unary(let function):
-                        result = function(operand!) // what if operation is pending?
+                        result = function(operand!)
+                        operand = result
                     case .binary(let function):
                         pendingOperation = function
                         pendingOperand = operand
@@ -70,6 +71,7 @@ class CalculatorBrain {
                     case .equals:
                         if isPending {
                             result = pendingOperation!(pendingOperand!, operand!)
+                            operand = result
                             isPending = false
                         }
                     }
