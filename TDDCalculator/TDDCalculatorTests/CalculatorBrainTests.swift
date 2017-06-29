@@ -383,12 +383,28 @@ class CalculatorBrainSpec: QuickSpec {
             }
             
             context("build clean string from double") {
-                it("should truncate .0 from whole numbers") {
+                it("should truncate .0 when given a whole number") {
                     // if
+                    let calculatorBrain = CalculatorBrain()
+                    let expectedString = "3"
                     
                     // when
+                    let actualString = calculatorBrain.buildStringFromDouble(3.0)
                     
                     // then
+                    expect(actualString).to(equal(expectedString))
+                }
+                
+                it("should not truncate digits from decimal numbers") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    let expectedString = "3.14"
+                    
+                    // when
+                    let actualString = calculatorBrain.buildStringFromDouble(3.14)
+                    
+                    // then
+                    expect(actualString).to(equal(expectedString))
                 }
             }
             

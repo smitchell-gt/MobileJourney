@@ -113,7 +113,11 @@ class CalculatorBrain {
     }
     
     func buildStringFromDouble(_ value: Double) -> String {
-        return ""
+        if value.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(Int(value))
+        } else {
+            return String(value)
+        }
     }
     
 }
