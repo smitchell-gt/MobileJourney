@@ -352,6 +352,51 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.isPending).to(equal(expected.isPending))
                 }
             }
+            
+            context("build description") {
+                it("should return description of 'π' when operation is π") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.performOperation(with: "π")
+                    let expectedDescription = "π"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
+                
+                it("should return description of 'cos(3)' when operation is 3 cos") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "cos")
+                    let expectedDescription = "cos(3)"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
+            }
+            
+            context("build clean string from double") {
+                it("should truncate .0 from whole numbers") {
+                    // if
+                    
+                    // when
+                    
+                    // then
+                }
+            }
+            
+            context("clear") {
+                it("should clear history") {
+                    
+                }
+            }
         }
     }
 }

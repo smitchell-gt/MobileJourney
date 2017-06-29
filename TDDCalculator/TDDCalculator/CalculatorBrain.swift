@@ -79,7 +79,29 @@ class CalculatorBrain {
             }
         }
         
-        return (result: result, isPending: isPending, description: "")
+        var description: String = ""
+        
+        for action in history {
+            switch action {
+            case .operand(let value):
+                description += String(value)
+            case .operation(let symbol):
+                if let operation = operations[symbol] {
+                    switch operation {
+                    case .constant:
+                        description += symbol
+                    case .unary:
+                        description = symbol + "(" + description + ")"
+                    case .binary:
+                        break
+                    case .equals:
+                        break
+                    }
+                }
+            }
+        }
+        
+        return (result: result, isPending: isPending, description: description)
     }
     
     func clear() {
