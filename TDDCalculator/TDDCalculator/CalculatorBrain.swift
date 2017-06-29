@@ -84,7 +84,7 @@ class CalculatorBrain {
         for action in history {
             switch action {
             case .operand(let value):
-                description += String(value)
+                description += buildStringFromDouble(value)
             case .operation(let symbol):
                 if let operation = operations[symbol] {
                     switch operation {
