@@ -84,6 +84,9 @@ class CalculatorBrain {
         for action in history {
             switch action {
             case .operand(let value):
+                if !description.isEmpty {
+                    description += " "
+                }
                 description += buildStringFromDouble(value)
             case .operation(let symbol):
                 if let operation = operations[symbol] {
@@ -93,12 +96,16 @@ class CalculatorBrain {
                     case .unary:
                         description = symbol + "(" + description + ")"
                     case .binary:
-                        break
+                        description += " " + symbol
                     case .equals:
                         break
                     }
                 }
             }
+        }
+        
+        if !isPending {
+            description += " ="
         }
         
         return (result: result, isPending: isPending, description: description)
