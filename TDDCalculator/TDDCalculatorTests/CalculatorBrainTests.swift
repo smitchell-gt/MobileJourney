@@ -553,7 +553,28 @@ class CalculatorBrainSpec: QuickSpec {
             
             context("clear") {
                 it("should clear history") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.performOperation(with: "√")
+                    calculatorBrain.setOperand(double: 6)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.clear()
                     
+                    let expected: (result: Double?, isPending: Bool, description: String) = (result: nil, isPending: false, description: "")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(beNil())
+                    expect(actual.isPending).to(equal(expected.isPending))
+                    expect(actual.description).to(equal(expected.description))
                 }
             }
         }

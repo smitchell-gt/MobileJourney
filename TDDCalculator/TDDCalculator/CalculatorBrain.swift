@@ -124,7 +124,7 @@ class CalculatorBrain {
     }
     
     func clear() {
-        
+        history = []
     }
     
     func popLastActionFromHistory() {
