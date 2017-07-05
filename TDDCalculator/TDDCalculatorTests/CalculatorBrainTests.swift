@@ -577,6 +577,31 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.description).to(equal(expected.description))
                 }
             }
+            
+            context("popLastActionFromHistory") {
+                it("should set result to nil and isPending to true and description to '7 + ' when = is popped") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    calculatorBrain.evaluate(using: nil)
+                    
+                    calculatorBrain.popLastActionFromHistory()
+                    
+                    let expected: (result: Double?, isPending: Bool, description: String) = (result: nil, isPending: true, description: "7 + ")
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(beNil())
+                    expect(actual.isPending).to(equal(expected.isPending))
+                    expect(actual.description).to(equal(expected.description))
+                }
+            }
         }
     }
 }

@@ -128,7 +128,7 @@ class CalculatorBrain {
     }
     
     func popLastActionFromHistory() {
-        
+        history.popLast()
     }
     
     func buildStringFromDouble(_ value: Double) -> String {
