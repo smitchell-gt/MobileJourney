@@ -45,11 +45,46 @@ class CalculatorBrain {
     
     func evaluate(using variableDictionary: Dictionary<String,Double>?) -> (result: Double?, isPending: Bool, description: String) {
         
-        var operand: Double?
         var result: Double?
         var isPending: Bool = false
+        var description: String = ""
+        
+        var operand: Double?
         var pendingOperation: ((Double,Double) -> Double)?
         var pendingOperand: Double?
+        
+        for action in history {
+            switch action {
+            case .operand(let value):
+                if !description.isEmpty {
+                    description += " "
+                }
+                if !isPending {
+                    description += buildStringFromDouble(value)
+                }
+                operand = value
+            case .operation(let symbol):
+                if let operation = operations[symbol] {
+                    switch operation {
+                    case .constant(let value):
+                        description += symbol
+                        operand = value
+                    case .unary:
+                        if isPending {
+                            description += symbol + "(" + buildStringFromDouble(operand!) + ")"
+                        } else {
+                            description = symbol + "(" + description + ")"
+                        }
+                    case .binary:
+                        description += " " + symbol
+                        isPending = true
+                    case .equals:
+                        description += buildStringFromDouble(operand!)
+                        isPending = false
+                    }
+                }
+            }
+        }
         
         for action in history {
             switch action {
@@ -74,31 +109,6 @@ class CalculatorBrain {
                             operand = result
                             isPending = false
                         }
-                    }
-                }
-            }
-        }
-        
-        var description: String = ""
-        
-        for action in history {
-            switch action {
-            case .operand(let value):
-                if !description.isEmpty {
-                    description += " "
-                }
-                description += buildStringFromDouble(value)
-            case .operation(let symbol):
-                if let operation = operations[symbol] {
-                    switch operation {
-                    case .constant:
-                        description += symbol
-                    case .unary:
-                        description = symbol + "(" + description + ")"
-                    case .binary:
-                        description += " " + symbol
-                    case .equals:
-                        break
                     }
                 }
             }

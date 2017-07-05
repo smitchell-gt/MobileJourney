@@ -441,6 +441,22 @@ class CalculatorBrainSpec: QuickSpec {
                     // then
                     expect(actual.description).to(equal(expectedDescription))
                 }
+                
+                it("should return description of '7 + √(9)' when operation is 7 + 9 √") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "√")
+                    let expectedDescription = "7 + √(9)"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
             }
             
             context("build clean string from double") {
