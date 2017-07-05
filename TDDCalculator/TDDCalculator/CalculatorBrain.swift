@@ -72,6 +72,7 @@ class CalculatorBrain {
                     case .unary:
                         if isPending {
                             description += symbol + "(" + buildStringFromDouble(operand!) + ")"
+                            isPending = false
                         } else {
                             description = symbol + "(" + description + ")"
                         }
@@ -79,7 +80,9 @@ class CalculatorBrain {
                         description += " " + symbol
                         isPending = true
                     case .equals:
-                        description += buildStringFromDouble(operand!)
+                        if isPending {
+                            description += buildStringFromDouble(operand!)
+                        }
                         isPending = false
                     }
                 }
@@ -112,10 +115,6 @@ class CalculatorBrain {
                     }
                 }
             }
-        }
-        
-        if !isPending {
-            description += " ="
         }
         
         return (result: result, isPending: isPending, description: description)
