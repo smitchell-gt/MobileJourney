@@ -464,6 +464,65 @@ class CalculatorBrainSpec: QuickSpec {
                     // then
                     expect(actual.description).to(equal(expectedDescription))
                 }
+                
+                it("should return description of '7 + 9 + 6 + 3' when operation is 7 + 9 = + 6 = + 3 =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 6)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "=")
+                    let expectedDescription = "7 + 9 + 6 + 3"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
+                
+                it("should return description of '6 + 3' when operation is 7 + 9 = √ 6 + 3 =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 9)
+                    calculatorBrain.performOperation(with: "=")
+                    calculatorBrain.performOperation(with: "√")
+                    calculatorBrain.setOperand(double: 6)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(double: 3)
+                    calculatorBrain.performOperation(with: "=")
+                    let expectedDescription = "6 + 3"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
+                
+                it("should return description of '4 × π' when operation is 4 × π =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 4)
+                    calculatorBrain.performOperation(with: "×")
+                    calculatorBrain.performOperation(with: "π")
+                    calculatorBrain.performOperation(with: "=")
+                    let expectedDescription = "4 × π"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
+                }
             }
             
             context("build clean string from double") {

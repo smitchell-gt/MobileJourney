@@ -60,15 +60,18 @@ class CalculatorBrain {
                     description += " "
                 }
                 if !isPending {
-                    description += buildStringFromDouble(value)
+                    description = buildStringFromDouble(value)
                 }
                 operand = value
             case .operation(let symbol):
                 if let operation = operations[symbol] {
                     switch operation {
-                    case .constant(let value):
+                    case .constant:
+                        if !description.isEmpty {
+                            description += " "
+                        }
                         description += symbol
-                        operand = value
+                        isPending = false
                     case .unary:
                         if isPending {
                             description += symbol + "(" + buildStringFromDouble(operand!) + ")"
