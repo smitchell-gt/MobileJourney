@@ -4,6 +4,7 @@ class CalculatorBrain {
     
     private enum Action {
         case operand(Double)
+        case variable(String)
         case operation(String)
     }
     
@@ -32,7 +33,7 @@ class CalculatorBrain {
     private var history: [Action] = []
     
     func setOperand(variable: String) {
-        
+        history.append(Action.variable(variable))
     }
     
     func setOperand(double: Double) {
@@ -53,6 +54,8 @@ class CalculatorBrain {
         var pendingOperation: ((Double,Double) -> Double)?
         var pendingOperand: Double?
         
+        var operandString: String?
+        
         for action in history {
             switch action {
             case .operand(let value):
@@ -62,7 +65,15 @@ class CalculatorBrain {
                 if !isPending {
                     description = buildStringFromDouble(value)
                 }
-                operand = value
+                operandString = buildStringFromDouble(value)
+            case .variable(let variable):
+                if !description.isEmpty {
+                    description += " "
+                }
+                if !isPending {
+                    description = variable
+                }
+                operandString = variable
             case .operation(let symbol):
                 if let operation = operations[symbol] {
                     switch operation {
@@ -74,7 +85,7 @@ class CalculatorBrain {
                         isPending = false
                     case .unary:
                         if isPending {
-                            description += symbol + "(" + buildStringFromDouble(operand!) + ")"
+                            description += symbol + "(" + operandString! + ")"
                             isPending = false
                         } else {
                             description = symbol + "(" + description + ")"
@@ -84,7 +95,7 @@ class CalculatorBrain {
                         isPending = true
                     case .equals:
                         if isPending {
-                            description += buildStringFromDouble(operand!)
+                            description += operandString!
                         }
                         isPending = false
                     }
@@ -96,6 +107,16 @@ class CalculatorBrain {
             switch action {
             case .operand(let value):
                 operand = value
+            case .variable(let variable):
+                if variableDictionary == nil {
+                    operand = 0
+                } else {
+                    if let value = variableDictionary?[variable] {
+                        operand = value
+                    } else {
+                        operand = 0
+                    }
+                }
             case .operation(let symbol):
                 if let operation = operations[symbol] {
                     switch operation {
@@ -124,11 +145,11 @@ class CalculatorBrain {
     }
     
     func clear() {
-        history = []
+        history.removeAll()
     }
     
     func popLastActionFromHistory() {
-        history.popLast()
+        let _ = history.popLast()
     }
     
     func buildStringFromDouble(_ value: Double) -> String {

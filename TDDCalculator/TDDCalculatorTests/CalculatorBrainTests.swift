@@ -587,8 +587,6 @@ class CalculatorBrainSpec: QuickSpec {
                     calculatorBrain.setOperand(double: 9)
                     calculatorBrain.performOperation(with: "=")
                     
-                    calculatorBrain.evaluate(using: nil)
-                    
                     calculatorBrain.popLastActionFromHistory()
                     
                     let expected: (result: Double?, isPending: Bool, description: String) = (result: nil, isPending: true, description: "7 + ")
@@ -600,6 +598,82 @@ class CalculatorBrainSpec: QuickSpec {
                     expect(actual.result).to(beNil())
                     expect(actual.isPending).to(equal(expected.isPending))
                     expect(actual.description).to(equal(expected.description))
+                }
+            }
+            
+            context("evaluate using variable dictionary") {
+                it("should return 7 when operation is '7 + x' and no dictionary is provided") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(variable: "x")
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expectedResult: Double = 7
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: nil)
+                    
+                    // then
+                    expect(actual.result).to(equal(expectedResult))
+                }
+                
+                it("should return 7 when operation is '7 + x' and a dictionary that doesn't contain x is provided") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(variable: "x")
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expectedResult: Double = 7
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: Dictionary<String,Double>())
+                    
+                    // then
+                    expect(actual.result).to(equal(expectedResult))
+                }
+                
+                it("should return 10 when operation is '7 + x' and a dictionary that contains x = 3") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(variable: "x")
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    let expectedResult: Double = 10
+                    
+                    var variables = Dictionary<String,Double>()
+                    variables["x"] = 3
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: variables)
+                    
+                    // then
+                    expect(actual.result).to(equal(expectedResult))
+                }
+                
+                it("should return description of '7 + x' when operation is 7 + x =") {
+                    // if
+                    let calculatorBrain = CalculatorBrain()
+                    calculatorBrain.setOperand(double: 7)
+                    calculatorBrain.performOperation(with: "+")
+                    calculatorBrain.setOperand(variable: "x")
+                    calculatorBrain.performOperation(with: "=")
+                    
+                    var variables = Dictionary<String,Double>()
+                    variables["x"] = 3
+                    
+                    let expectedDescription = "7 + x"
+                    
+                    // when
+                    let actual = calculatorBrain.evaluate(using: variables)
+                    
+                    // then
+                    expect(actual.description).to(equal(expectedDescription))
                 }
             }
         }
