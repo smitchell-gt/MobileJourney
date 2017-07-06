@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FaceViewController: UIViewController {
 
     @IBOutlet weak var faceView: FaceView! {
         didSet {
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var facialExpression = FacialExpression(eyes: .open, mouth: .grin) {
+    var facialExpression = FacialExpression(eyes: .open, mouth: .neutral) {
         didSet {
             updateUI()
         }
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
             faceView?.eyesOpen = false
         }
         
-        faceView.mouthCurvature = mouthCurvatures[facialExpression.mouth] ?? 0.0
+        faceView?.mouthCurvature = mouthCurvatures[facialExpression.mouth] ?? 0.0
     }
     
     private let mouthCurvatures = [FacialExpression.Mouth.frown: -1.0, .smirk: -0.5, .neutral: 0.0, .grin: 0.5, .smile: 1.0]
