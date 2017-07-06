@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Face-->
+        <!--Face View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="FaceViewController" customModule="FaceIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <constraint firstAttribute="trailing" secondItem="479-6M-i2R" secondAttribute="trailing" id="iRG-uR-9AB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Face" id="1gc-aY-xy1"/>
+                    <navigationItem key="navigationItem" id="1gc-aY-xy1"/>
                     <connections>
                         <outlet property="faceView" destination="479-6M-i2R" id="ydZ-bN-OzH"/>
                     </connections>
