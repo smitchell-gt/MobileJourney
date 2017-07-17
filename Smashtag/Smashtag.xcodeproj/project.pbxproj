@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		466EA4581F1CF8890024E3CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA4571F1CF8890024E3CB /* AppDelegate.swift */; };
-		466EA45A1F1CF8890024E3CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA4591F1CF8890024E3CB /* ViewController.swift */; };
 		466EA45D1F1CF8890024E3CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45B1F1CF8890024E3CB /* Main.storyboard */; };
 		466EA45F1F1CF8890024E3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45E1F1CF8890024E3CB /* Assets.xcassets */; };
 		466EA4621F1CF8890024E3CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA4601F1CF8890024E3CB /* LaunchScreen.storyboard */; };
@@ -20,6 +19,7 @@
 		466EA48D1F1CFEB30024E3CB /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 466EA4861F1CFE4A0024E3CB /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		466EA48F1F1CFEC00024E3CB /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 466EA48A1F1CFE540024E3CB /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		466EA4901F1CFEC00024E3CB /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 466EA4881F1CFE530024E3CB /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		466EA4931F1D099B0024E3CB /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA4921F1D099B0024E3CB /* TweetTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,6 @@
 /* Begin PBXFileReference section */
 		466EA4541F1CF8890024E3CB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		466EA4571F1CF8890024E3CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		466EA4591F1CF8890024E3CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		466EA45C1F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		466EA45E1F1CF8890024E3CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		466EA4611F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,6 +79,7 @@
 		466EA4861F1CFE4A0024E3CB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		466EA4881F1CFE530024E3CB /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		466EA48A1F1CFE540024E3CB /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		466EA4921F1D099B0024E3CB /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,12 +134,10 @@
 		466EA4561F1CF8890024E3CB /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
-				466EA4571F1CF8890024E3CB /* AppDelegate.swift */,
-				466EA4591F1CF8890024E3CB /* ViewController.swift */,
+				466EA4911F1D08D20024E3CB /* Supporting Files */,
 				466EA45B1F1CF8890024E3CB /* Main.storyboard */,
-				466EA45E1F1CF8890024E3CB /* Assets.xcassets */,
-				466EA4601F1CF8890024E3CB /* LaunchScreen.storyboard */,
 				466EA4631F1CF8890024E3CB /* Info.plist */,
+				466EA4921F1D099B0024E3CB /* TweetTableViewController.swift */,
 			);
 			path = Smashtag;
 			sourceTree = "<group>";
@@ -170,6 +168,16 @@
 				466EA4861F1CFE4A0024E3CB /* Alamofire.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		466EA4911F1D08D20024E3CB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				466EA4571F1CF8890024E3CB /* AppDelegate.swift */,
+				466EA45E1F1CF8890024E3CB /* Assets.xcassets */,
+				466EA4601F1CF8890024E3CB /* LaunchScreen.storyboard */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +316,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				466EA45A1F1CF8890024E3CB /* ViewController.swift in Sources */,
 				466EA4581F1CF8890024E3CB /* AppDelegate.swift in Sources */,
+				466EA4931F1D099B0024E3CB /* TweetTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
