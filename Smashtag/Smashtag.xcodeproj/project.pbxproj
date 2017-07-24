@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		46379FDA1F1D440C00A46638 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */; };
+		4664E7A61F267B850063ABEE /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4664E7A51F267B850063ABEE /* ReactiveSwift.framework */; };
+		4664E7A81F267B8A0063ABEE /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4664E7A71F267B8A0063ABEE /* Result.framework */; };
+		4664E7AA1F267B8C0063ABEE /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4664E7A91F267B8C0063ABEE /* ReactiveCocoa.framework */; };
+		4664E7AB1F267B9D0063ABEE /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4664E7A91F267B8C0063ABEE /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4664E7AC1F267B9D0063ABEE /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4664E7A71F267B8A0063ABEE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4664E7AD1F267B9D0063ABEE /* ReactiveSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4664E7A51F267B850063ABEE /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		466EA4581F1CF8890024E3CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA4571F1CF8890024E3CB /* AppDelegate.swift */; };
 		466EA45D1F1CF8890024E3CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45B1F1CF8890024E3CB /* Main.storyboard */; };
 		466EA45F1F1CF8890024E3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45E1F1CF8890024E3CB /* Assets.xcassets */; };
@@ -49,6 +55,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4664E7AB1F267B9D0063ABEE /* ReactiveCocoa.framework in CopyFiles */,
+				4664E7AC1F267B9D0063ABEE /* Result.framework in CopyFiles */,
+				4664E7AD1F267B9D0063ABEE /* ReactiveSwift.framework in CopyFiles */,
 				466EA4961F1D0E630024E3CB /* Twitter.framework in CopyFiles */,
 				466EA48D1F1CFEB30024E3CB /* Alamofire.framework in CopyFiles */,
 			);
@@ -69,6 +78,9 @@
 
 /* Begin PBXFileReference section */
 		46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		4664E7A51F267B850063ABEE /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
+		4664E7A71F267B8A0063ABEE /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		4664E7A91F267B8C0063ABEE /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		466EA4541F1CF8890024E3CB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		466EA4571F1CF8890024E3CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		466EA45C1F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +107,9 @@
 			files = (
 				466EA4951F1D0E630024E3CB /* Twitter.framework in Frameworks */,
 				466EA4871F1CFE4A0024E3CB /* Alamofire.framework in Frameworks */,
+				4664E7AA1F267B8C0063ABEE /* ReactiveCocoa.framework in Frameworks */,
+				4664E7A61F267B850063ABEE /* ReactiveSwift.framework in Frameworks */,
+				4664E7A81F267B8A0063ABEE /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +186,9 @@
 		466EA4851F1CFE4A0024E3CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4664E7A91F267B8C0063ABEE /* ReactiveCocoa.framework */,
+				4664E7A71F267B8A0063ABEE /* Result.framework */,
+				4664E7A51F267B850063ABEE /* ReactiveSwift.framework */,
 				466EA4941F1D0E630024E3CB /* Twitter.framework */,
 				466EA48A1F1CFE540024E3CB /* Quick.framework */,
 				466EA4881F1CFE530024E3CB /* Nimble.framework */,
