@@ -15,7 +15,7 @@
 		4664E7AC1F267B9D0063ABEE /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4664E7A71F267B8A0063ABEE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4664E7AD1F267B9D0063ABEE /* ReactiveSwift.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4664E7A51F267B850063ABEE /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		466EA4581F1CF8890024E3CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA4571F1CF8890024E3CB /* AppDelegate.swift */; };
-		466EA45D1F1CF8890024E3CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45B1F1CF8890024E3CB /* Main.storyboard */; };
+		466EA45D1F1CF8890024E3CB /* TweetTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45B1F1CF8890024E3CB /* TweetTableView.storyboard */; };
 		466EA45F1F1CF8890024E3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 466EA45E1F1CF8890024E3CB /* Assets.xcassets */; };
 		466EA4621F1CF8890024E3CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 466EA4601F1CF8890024E3CB /* LaunchScreen.storyboard */; };
 		466EA46D1F1CF8890024E3CB /* SmashtagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466EA46C1F1CF8890024E3CB /* SmashtagTests.swift */; };
@@ -83,7 +83,7 @@
 		4664E7A91F267B8C0063ABEE /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		466EA4541F1CF8890024E3CB /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		466EA4571F1CF8890024E3CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		466EA45C1F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		466EA45C1F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TweetTableView.storyboard; sourceTree = "<group>"; };
 		466EA45E1F1CF8890024E3CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		466EA4611F1CF8890024E3CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		466EA4631F1CF8890024E3CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,6 +132,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4664E7B11F26919B0063ABEE /* TweetTable */ = {
+			isa = PBXGroup;
+			children = (
+				466EA45B1F1CF8890024E3CB /* TweetTableView.storyboard */,
+				466EA4921F1D099B0024E3CB /* TweetTableViewController.swift */,
+				46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */,
+			);
+			name = TweetTable;
+			sourceTree = "<group>";
+		};
 		466EA44B1F1CF8890024E3CB = {
 			isa = PBXGroup;
 			children = (
@@ -156,11 +166,9 @@
 		466EA4561F1CF8890024E3CB /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
+				4664E7B11F26919B0063ABEE /* TweetTable */,
 				466EA4911F1D08D20024E3CB /* Supporting Files */,
-				466EA45B1F1CF8890024E3CB /* Main.storyboard */,
 				466EA4631F1CF8890024E3CB /* Info.plist */,
-				466EA4921F1D099B0024E3CB /* TweetTableViewController.swift */,
-				46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */,
 			);
 			path = Smashtag;
 			sourceTree = "<group>";
@@ -318,7 +326,7 @@
 			files = (
 				466EA4621F1CF8890024E3CB /* LaunchScreen.storyboard in Resources */,
 				466EA45F1F1CF8890024E3CB /* Assets.xcassets in Resources */,
-				466EA45D1F1CF8890024E3CB /* Main.storyboard in Resources */,
+				466EA45D1F1CF8890024E3CB /* TweetTableView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,12 +389,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		466EA45B1F1CF8890024E3CB /* Main.storyboard */ = {
+		466EA45B1F1CF8890024E3CB /* TweetTableView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				466EA45C1F1CF8890024E3CB /* Base */,
 			);
-			name = Main.storyboard;
+			name = TweetTableView.storyboard;
 			sourceTree = "<group>";
 		};
 		466EA4601F1CF8890024E3CB /* LaunchScreen.storyboard */ = {
