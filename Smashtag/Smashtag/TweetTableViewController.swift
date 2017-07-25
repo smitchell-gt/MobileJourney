@@ -1,14 +1,20 @@
 import UIKit
+import ReactiveCocoa
+import ReactiveSwift
 import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
+    var viewModel: TweetTableViewModel!
+    
     // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        viewModel = TweetTableViewModel()
     }
     
     // MARK: - Outlets
@@ -25,15 +31,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
         return true
     }
-
-    // MARK: - Model
     
-    private var tweets = [Array<Twitter.Tweet>]()
     var searchText: String? {
         didSet {
             searchTextField?.text = searchText
             searchTextField?.resignFirstResponder()
-            tweets.removeAll()
+            viewModel.tweets.removeAll()
             tableView.reloadData()
             searchForTweets()
             title = searchText
@@ -57,7 +60,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             request.fetchTweets({ [weak self] newTweets in
                 DispatchQueue.main.async {
                     if request == self?.lastTwitterRequest {
-                        self?.tweets.insert(newTweets, at: 0)
+                        self?.viewModel.tweets.insert(newTweets, at: 0)
                         self?.tableView.insertSections([0], with: .fade)
                     }
                 }
@@ -68,17 +71,17 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tweets.count
+        return viewModel.numberOfTweets
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets[section].count
+        return viewModel.getTweetAt(index: section).count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Tweet", for: indexPath)
         
-        let tweet = tweets[indexPath.section][indexPath.row]
+        let tweet = viewModel.getTweetAt(index: indexPath.section)[indexPath.row]
         
         if let tweetCell = cell as? TweetTableViewCell {
             tweetCell.tweet = tweet
