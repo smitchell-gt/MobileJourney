@@ -1,10 +1,13 @@
 import UIKit
+import Alamofire
 import ReactiveCocoa
 import ReactiveSwift
 import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
+    let tweetSignal = MutableProperty<[Array<Twitter.Tweet>]>([])
+    let searchSignal = MutableProperty<String>("")
     var viewModel: TweetTableViewModel!
     
     // MARK: - Lifecycle Methods
@@ -15,6 +18,16 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
         
         viewModel = TweetTableViewModel()
+        
+        searchSignal <~ viewModel.searchText.producer
+        
+        let _ = searchSignal.producer.startWithValues { _ in
+            self.searchTextField?.resignFirstResponder()
+            self.viewModel.removeAllTweets()
+            self.tableView.reloadData()
+            self.searchForTweets()
+            self.title = self.viewModel.getSearchText()
+        }
     }
     
     // MARK: - Outlets
@@ -27,20 +40,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == searchTextField {
-            searchText = searchTextField.text
+            viewModel.setSearchText(searchTextField.text!)
         }
         return true
-    }
-    
-    var searchText: String? {
-        didSet {
-            searchTextField?.text = searchText
-            searchTextField?.resignFirstResponder()
-            viewModel.tweets.removeAll()
-            tableView.reloadData()
-            searchForTweets()
-            title = searchText
-        }
     }
     
     // MARK: - Private Methods
@@ -48,8 +50,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private var lastTwitterRequest: Twitter.Request?
     
     private func twitterRequest() -> Twitter.Request? {
-        if let query = searchText, !query.isEmpty {
-            return Twitter.Request(search: query, count: 100)
+        if !viewModel.getSearchText().isEmpty {
+            return Twitter.Request(search: viewModel.getSearchText(), count: 100)
         }
         return nil
     }
@@ -60,7 +62,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             request.fetchTweets({ [weak self] newTweets in
                 DispatchQueue.main.async {
                     if request == self?.lastTwitterRequest {
-                        self?.viewModel.tweets.insert(newTweets, at: 0)
+                        self?.viewModel.insertNewTweets(newTweets, at: 0)
                         self?.tableView.insertSections([0], with: .fade)
                     }
                 }
