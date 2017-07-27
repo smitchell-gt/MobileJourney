@@ -16,7 +16,38 @@ class TweetTableViewCell: UITableViewCell {
     
     private func updateUI() {
         tweetUserLabel?.text = tweet?.user.description
-        tweetTextLabel?.text = tweet?.text
+        
+        if let tweetText = tweet?.text {
+            let highlightedString = NSMutableAttributedString(string: tweetText)
+            for mention in (tweet?.userMentions)! {
+                if tweetText.contains(mention.keyword) {
+                    let range = tweetText.range(of: mention.keyword)
+                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
+                    let length = mention.keyword.characters.count
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.magenta, range: NSMakeRange(index, length))
+                }
+            }
+            
+            for mention in (tweet?.hashtags)! {
+                if tweetText.contains(mention.keyword) {
+                    let range = tweetText.range(of: mention.keyword)
+                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
+                    let length = mention.keyword.characters.count
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.green, range: NSMakeRange(index, length))
+                }
+            }
+            
+            for mention in (tweet?.urls)! {
+                if tweetText.contains(mention.keyword) {
+                    let range = tweetText.range(of: mention.keyword)
+                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
+                    let length = mention.keyword.characters.count
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.cyan, range: NSMakeRange(index, length))
+                }
+            }
+            
+            tweetTextLabel?.attributedText = highlightedString
+        }
         
         if let profileImageURL = tweet?.user.profileImageURL {
             // TODO: blocks main thread

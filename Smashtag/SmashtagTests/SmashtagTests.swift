@@ -1,13 +1,14 @@
 import Quick
 import Nimble
+import Twitter
+
+@testable import Smashtag
 
 class SmashtagTests: QuickSpec {
     override func spec() {
-        describe("SmashtagTests") {
-            context("when this condition is met") {
-                it("does this thing") {
-                    
-                }
+        describe("TweetTableViewModel") {
+            context("tweetslist") {
+                
             }
         }
     }
