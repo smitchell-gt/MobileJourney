@@ -21,28 +21,19 @@ class TweetTableViewCell: UITableViewCell {
             let highlightedString = NSMutableAttributedString(string: tweetText)
             for mention in (tweet?.userMentions)! {
                 if tweetText.contains(mention.keyword) {
-                    let range = tweetText.range(of: mention.keyword)
-                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
-                    let length = mention.keyword.characters.count
-                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.magenta, range: NSMakeRange(index, length))
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.magenta, range: mention.nsrange)
                 }
             }
             
             for mention in (tweet?.hashtags)! {
                 if tweetText.contains(mention.keyword) {
-                    let range = tweetText.range(of: mention.keyword)
-                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
-                    let length = mention.keyword.characters.count
-                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.green, range: NSMakeRange(index, length))
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.green, range: mention.nsrange)
                 }
             }
             
             for mention in (tweet?.urls)! {
                 if tweetText.contains(mention.keyword) {
-                    let range = tweetText.range(of: mention.keyword)
-                    let index = tweetText.distance(from: tweetText.startIndex, to: (range?.lowerBound)!)
-                    let length = mention.keyword.characters.count
-                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.cyan, range: NSMakeRange(index, length))
+                    highlightedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: mention.nsrange)
                 }
             }
             

@@ -9,47 +9,79 @@ class MentionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(viewModel.getHashtagMentions())
-        print(viewModel.getUserMentions())
-        print(viewModel.getUrlMentions())
     }
     
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 4
-        return 0
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if section == 0 {
-//            return viewModel.getImages().count
-//        }
-//        
-//        if section == 1 {
-//            return viewModel.getHashtagMentions().count
-//        }
-//        
-//        if section == 2 {
-//            return viewModel.getUserMentions().count
-//        }
-//        
-//        if section == 3 {
-//            return viewModel.getUrlMentions().count
-//        }
+        let numberOfRows: Int
         
-        return 0
+        if section == 0 {
+            numberOfRows = viewModel.getImages().count
+        } else if section == 1 {
+            numberOfRows = viewModel.getHashtagMentions().count
+        } else if section == 2 {
+            numberOfRows = viewModel.getUserMentions().count
+        } else if section == 3 {
+            numberOfRows = viewModel.getUrlMentions().count
+        } else {
+            numberOfRows = 0
+        }
+        
+        return numberOfRows
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell: UITableViewCell
+        
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath)
+            if let imageCell = cell as? ImageTableViewCell {
+                imageCell.tweetImage = viewModel.getImages()[indexPath.row]
+            }
+        } else if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "hashtagMention", for: indexPath)
+            if let hashtagCell = cell as? HashtagMentionTableViewCell {
+                hashtagCell.hashtag = viewModel.getHashtagMentions()[indexPath.row].keyword
+            }
+        } else if indexPath.section == 2 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "userMention", for: indexPath)
+            if let userCell = cell as? UserMentionTableViewCell {
+                userCell.username = viewModel.getUserMentions()[indexPath.row].keyword
+            }
+        } else if indexPath.section == 3 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "urlMention", for: indexPath)
+            if let urlCell = cell as? UrlMentionTableViewCell {
+                urlCell.url = viewModel.getUrlMentions()[indexPath.row].keyword
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "resueIdentifier", for: indexPath)
+        }
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let title: String
+        
+        if section == 0 {
+            title = "Images"
+        } else if section == 1 {
+            title = "Hashtags"
+        } else if section == 2 {
+            title = "Users"
+        } else if section == 3 {
+            title = "URLs"
+        } else {
+            title = ""
+        }
+        
+        return title
+    }
 
     /*
     // Override to support conditional editing of the table view.

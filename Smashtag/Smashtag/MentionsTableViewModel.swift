@@ -11,7 +11,7 @@ class MentionsTableViewModel {
     }
     
     func getImages() -> [Twitter.MediaItem] {
-        return tweet.value.media
+        return tweet.value.media 
     }
     
     func getUserMentions() -> [Twitter.Mention] {
@@ -25,4 +25,5 @@ class MentionsTableViewModel {
     func getUrlMentions() -> [Twitter.Mention] {
         return tweet.value.urls
     }
+    
 }
