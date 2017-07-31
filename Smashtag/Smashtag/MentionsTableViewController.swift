@@ -66,18 +66,24 @@ class MentionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let title: String
+        var title = ""
         
         if section == 0 {
-            title = "Images"
+            if viewModel.getImages().count > 0 {
+                title = "Images"
+            }
         } else if section == 1 {
-            title = "Hashtags"
+            if viewModel.getHashtagMentions().count > 0 {
+                title = "Hashtags"
+            }
         } else if section == 2 {
-            title = "Users"
+            if viewModel.getUserMentions().count > 0 {
+                title = "Users"
+            }
         } else if section == 3 {
-            title = "URLs"
-        } else {
-            title = ""
+            if viewModel.getUrlMentions().count > 0 {
+                title = "URLs"
+            }
         }
         
         return title
