@@ -27,6 +27,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnB-rb-3c3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="1"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>

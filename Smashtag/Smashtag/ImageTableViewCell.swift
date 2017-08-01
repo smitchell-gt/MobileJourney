@@ -7,16 +7,16 @@ class ImageTableViewCell: UITableViewCell {
     
     var tweetImage: Twitter.MediaItem? {
         didSet {
-            updateUI()
+            fetchImage()
         }
     }
     
-    private func updateUI() {
+    //TOOD: Doesn't work
+    
+    private func fetchImage() {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let imageUrl = self?.tweetImage?.url
-            
-            if imageUrl != nil {
-                let urlContents = try? Data(contentsOf: imageUrl!)
+            if let imageUrl = self?.tweetImage?.url {
+                let urlContents = try? Data(contentsOf: imageUrl)
                 
                 if let imageData = urlContents {
                     DispatchQueue.main.async {
