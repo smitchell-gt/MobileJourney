@@ -117,7 +117,9 @@ class MentionsTableViewController: UITableViewController {
             if segue.identifier == "HashtagSearch" {
                 let hashtag = viewModel.getHashtagMentions()[cellRow].keyword
                 destinationViewController.viewModel = TweetTableViewModel(searchText: hashtag)
-            } else if segue.identifier == "UsernameSearch" {
+            }
+            
+            if segue.identifier == "UsernameSearch" {
                 let username = viewModel.getUserMentions()[cellRow].keyword
                 destinationViewController.viewModel = TweetTableViewModel(searchText: username)
             }

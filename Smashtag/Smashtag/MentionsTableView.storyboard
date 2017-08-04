@@ -91,7 +91,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="userLabel" destination="1HD-ui-8Z9" id="r8o-0y-F6B"/>
-                                    <segue destination="1PZ-B4-IsV" kind="showDetail" identifier="UsernameSearch" id="T2w-MU-cV3"/>
+                                    <segue destination="56v-lK-B74" kind="push" identifier="UsernameSearch" id="kO9-qv-NDy"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="urlMention" id="r7p-J4-FJS" customClass="UrlMentionTableViewCell" customModule="Smashtag" customModuleProvider="target">
@@ -136,10 +136,17 @@
                 <viewControllerPlaceholder storyboardName="TweetTableView" id="1PZ-B4-IsV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSW-4P-Cvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562" y="133"/>
+            <point key="canvasLocation" x="571" y="111"/>
+        </scene>
+        <!--TweetTableView-->
+        <scene sceneID="QKO-sM-jGE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TweetTableView" id="56v-lK-B74" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wqE-kV-wHo"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ll-IQ-ShS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571" y="156"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="T2w-MU-cV3"/>
-    </inferredMetricsTieBreakers>
 </document>
