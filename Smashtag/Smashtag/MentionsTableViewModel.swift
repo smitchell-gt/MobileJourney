@@ -10,6 +10,10 @@ class MentionsTableViewModel {
         self.tweet = MutableProperty(tweet)
     }
     
+    func getAuthorName() -> String {
+        return tweet.value.user.name
+    }
+    
     func getImages() -> [Twitter.MediaItem] {
         return tweet.value.media 
     }

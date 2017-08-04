@@ -4,19 +4,20 @@ import ReactiveSwift
 import Twitter
 
 class MentionsTableViewController: UITableViewController {
-
+    
     var viewModel: MentionsTableViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = viewModel.getAuthorName()
     }
     
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRows: Int
         
@@ -39,7 +40,7 @@ class MentionsTableViewController: UITableViewController {
         let cell: UITableViewCell
         
         if indexPath.section == 0 {
-            cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "imageMention", for: indexPath)
             if let imageCell = cell as? ImageTableViewCell {
                 imageCell.tweetImage = viewModel.getImages()[indexPath.row]
             }
@@ -61,8 +62,18 @@ class MentionsTableViewController: UITableViewController {
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "resueIdentifier", for: indexPath)
         }
-
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            let imageIndex = indexPath.row
+            let image = viewModel.getImages()[imageIndex]
+            return tableView.rowHeight * CGFloat(image.aspectRatio)
+        }
+        
+        return tableView.rowHeight
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -97,5 +108,20 @@ class MentionsTableViewController: UITableViewController {
             }
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let selectedCellIndexPath = self.tableView.indexPathForSelectedRow!
+        let cellRow = selectedCellIndexPath.row
+        
+        if let destinationViewController = segue.destination as? TweetTableViewController {
+            if segue.identifier == "HashtagSearch" {
+                let hashtag = viewModel.getHashtagMentions()[cellRow].keyword
+                destinationViewController.viewModel = TweetTableViewModel(searchText: hashtag)
+            } else if segue.identifier == "UsernameSearch" {
+                let username = viewModel.getUserMentions()[cellRow].keyword
+                destinationViewController.viewModel = TweetTableViewModel(searchText: username)
+            }
+        }
+    }
+    
 }

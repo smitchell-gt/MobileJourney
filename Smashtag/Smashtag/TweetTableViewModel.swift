@@ -7,9 +7,9 @@ class TweetTableViewModel {
     var tweets: MutableProperty<[Array<Twitter.Tweet>]>
     var searchText: MutableProperty<String>
     
-    init() {
+    init(searchText: String?) {
         tweets = MutableProperty<[Array<Twitter.Tweet>]>([])
-        searchText = MutableProperty<String>("")
+        self.searchText = MutableProperty<String>(searchText ?? "")
     }
     
     // MARK: - Tweets
