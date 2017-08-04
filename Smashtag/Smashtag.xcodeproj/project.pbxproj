@@ -12,6 +12,7 @@
 		462645C01F34E11E00BA01AB /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462645BF1F34E11E00BA01AB /* HistoryTableViewController.swift */; };
 		462645C21F34E82D00BA01AB /* HistoryTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462645C11F34E82D00BA01AB /* HistoryTableViewModel.swift */; };
 		462645C51F34ED8D00BA01AB /* SearchHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 462645C31F34ED8D00BA01AB /* SearchHistory.xcdatamodeld */; };
+		462645CA1F34F62300BA01AB /* TwitterSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462645C91F34F62300BA01AB /* TwitterSearch.swift */; };
 		462A4D5B1F2A45EF004BA51B /* MentionsTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462A4D5A1F2A45EF004BA51B /* MentionsTableView.storyboard */; };
 		46379FDA1F1D440C00A46638 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */; };
 		4664E7A61F267B850063ABEE /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4664E7A51F267B850063ABEE /* ReactiveSwift.framework */; };
@@ -95,6 +96,7 @@
 		462645BF1F34E11E00BA01AB /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		462645C11F34E82D00BA01AB /* HistoryTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewModel.swift; sourceTree = "<group>"; };
 		462645C41F34ED8D00BA01AB /* SearchHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SearchHistory.xcdatamodel; sourceTree = "<group>"; };
+		462645C91F34F62300BA01AB /* TwitterSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterSearch.swift; sourceTree = "<group>"; };
 		462A4D5A1F2A45EF004BA51B /* MentionsTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MentionsTableView.storyboard; sourceTree = "<group>"; };
 		46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		4664E7A51F267B850063ABEE /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
@@ -176,6 +178,15 @@
 			name = Tabs;
 			sourceTree = "<group>";
 		};
+		462645C61F34F5CF00BA01AB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				462645C31F34ED8D00BA01AB /* SearchHistory.xcdatamodeld */,
+				462645C91F34F62300BA01AB /* TwitterSearch.swift */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		462A4D591F2A3CB7004BA51B /* MentionsTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,13 +233,13 @@
 		466EA4561F1CF8890024E3CB /* Smashtag */ = {
 			isa = PBXGroup;
 			children = (
+				462645C61F34F5CF00BA01AB /* CoreData */,
 				462645BA1F34D65500BA01AB /* Tabs */,
 				462645B91F34D62000BA01AB /* HistoryTable */,
 				462A4D591F2A3CB7004BA51B /* MentionsTable */,
 				4664E7B11F26919B0063ABEE /* TweetTable */,
 				466EA4911F1D08D20024E3CB /* Supporting Files */,
 				466EA4631F1CF8890024E3CB /* Info.plist */,
-				462645C31F34ED8D00BA01AB /* SearchHistory.xcdatamodeld */,
 			);
 			path = Smashtag;
 			sourceTree = "<group>";
@@ -432,6 +443,7 @@
 				462645C21F34E82D00BA01AB /* HistoryTableViewModel.swift in Sources */,
 				466EA4931F1D099B0024E3CB /* TweetTableViewController.swift in Sources */,
 				46BF25531F2FAE0300BCF837 /* HashtagMentionTableViewCell.swift in Sources */,
+				462645CA1F34F62300BA01AB /* TwitterSearch.swift in Sources */,
 				46BF25511F2FABB800BCF837 /* ImageTableViewCell.swift in Sources */,
 				46379FDA1F1D440C00A46638 /* TweetTableViewCell.swift in Sources */,
 				462645C01F34E11E00BA01AB /* HistoryTableViewController.swift in Sources */,

@@ -10,7 +10,6 @@ class HistoryTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "History"
-        viewModel = HistoryTableViewModel()
     }
 
     // MARK: - Table view data source
