@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		462645BC1F34D67800BA01AB /* TabView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462645BB1F34D67800BA01AB /* TabView.storyboard */; };
+		462645BE1F34E00F00BA01AB /* HistoryTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462645BD1F34E00F00BA01AB /* HistoryTableView.storyboard */; };
+		462645C01F34E11E00BA01AB /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462645BF1F34E11E00BA01AB /* HistoryTableViewController.swift */; };
 		462A4D5B1F2A45EF004BA51B /* MentionsTableView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 462A4D5A1F2A45EF004BA51B /* MentionsTableView.storyboard */; };
 		46379FDA1F1D440C00A46638 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */; };
 		4664E7A61F267B850063ABEE /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4664E7A51F267B850063ABEE /* ReactiveSwift.framework */; };
@@ -87,6 +89,8 @@
 
 /* Begin PBXFileReference section */
 		462645BB1F34D67800BA01AB /* TabView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabView.storyboard; sourceTree = "<group>"; };
+		462645BD1F34E00F00BA01AB /* HistoryTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HistoryTableView.storyboard; sourceTree = "<group>"; };
+		462645BF1F34E11E00BA01AB /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
 		462A4D5A1F2A45EF004BA51B /* MentionsTableView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MentionsTableView.storyboard; sourceTree = "<group>"; };
 		46379FD91F1D440C00A46638 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		4664E7A51F267B850063ABEE /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 		462645B91F34D62000BA01AB /* HistoryTable */ = {
 			isa = PBXGroup;
 			children = (
+				462645BD1F34E00F00BA01AB /* HistoryTableView.storyboard */,
+				462645BF1F34E11E00BA01AB /* HistoryTableViewController.swift */,
 			);
 			name = HistoryTable;
 			sourceTree = "<group>";
@@ -388,6 +394,7 @@
 				462645BC1F34D67800BA01AB /* TabView.storyboard in Resources */,
 				466EA45D1F1CF8890024E3CB /* TweetTableView.storyboard in Resources */,
 				462A4D5B1F2A45EF004BA51B /* MentionsTableView.storyboard in Resources */,
+				462645BE1F34E00F00BA01AB /* HistoryTableView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +427,7 @@
 				46BF25531F2FAE0300BCF837 /* HashtagMentionTableViewCell.swift in Sources */,
 				46BF25511F2FABB800BCF837 /* ImageTableViewCell.swift in Sources */,
 				46379FDA1F1D440C00A46638 /* TweetTableViewCell.swift in Sources */,
+				462645C01F34E11E00BA01AB /* HistoryTableViewController.swift in Sources */,
 				46BF254E1F2F719A00BCF837 /* MentionsTableViewModel.swift in Sources */,
 				46BF254C1F2F6F2900BCF837 /* MentionsTableViewController.swift in Sources */,
 			);

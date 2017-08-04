@@ -9,25 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="ybN-At-7Pz">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wkv-42-9qe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="ukv-cO-tEF" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oUh-g5-odq"/>
-                        <viewControllerLayoutGuide type="bottom" id="ROq-3l-9u0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="V2B-WJ-9jj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="fIi-bW-AJi"/>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="519" y="490"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="TCg-Py-rFd">
             <objects>
@@ -39,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="4ut-UD-VeD" kind="relationship" relationship="viewControllers" id="lho-pD-ES5"/>
-                        <segue destination="ukv-cO-tEF" kind="relationship" relationship="viewControllers" id="F2a-DS-GYW"/>
+                        <segue destination="CHZ-Ue-BKZ" kind="relationship" relationship="viewControllers" id="F2a-DS-GYW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1U-tC-4kT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -74,6 +55,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3nr-Dz-KqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1382" y="-166"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JLE-7E-icl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHZ-Ue-BKZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="history" id="fIi-bW-AJi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aEF-fs-QEr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cog-D1-fiT" kind="relationship" relationship="rootViewController" id="TZg-go-rjx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YL0-c4-Nfc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517.60000000000002" y="489.80509745127438"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="SKD-nT-Y9S">
+            <objects>
+                <viewControllerPlaceholder id="cog-D1-fiT" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="oha-zI-mip"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ubE-oT-n6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1382" y="489"/>
         </scene>
     </scenes>
 </document>
