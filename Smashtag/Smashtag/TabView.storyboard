@@ -54,7 +54,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3nr-Dz-KqG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="-166"/>
+            <point key="canvasLocation" x="1117" y="-166"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JLE-7E-icl">
@@ -75,15 +75,15 @@
             </objects>
             <point key="canvasLocation" x="517.60000000000002" y="489.80509745127438"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--HistoryTableView-->
         <scene sceneID="SKD-nT-Y9S">
             <objects>
-                <viewControllerPlaceholder id="cog-D1-fiT" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ubE-oT-n6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="HistoryTableView" id="cog-D1-fiT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="oha-zI-mip"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ubE-oT-n6u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="489"/>
+            <point key="canvasLocation" x="1123" y="489"/>
         </scene>
     </scenes>
 </document>
